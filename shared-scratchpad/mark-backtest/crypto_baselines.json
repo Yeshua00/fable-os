@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "owner": "crypto_delta.py",
+  "note": "Single owner of baseline prices for the recurring delta check. Add a row per checkpoint; never copy these literals into reports again (2026-09-22 audit).",
+  "baselines": [
+    {
+      "date": "2026-09-10",
+      "prices": { "BTC": 78850.0, "ETH": 2501.0, "SOL": 104.76 },
+      "source": "MARKET_RESEARCH_854.json for BTC (Blockchain.com 78850 / BitFlyer 78628); ETH/SOL as tabulated in CRYPTO_PORTFOLIO_DELTA_20260920.md"
+    },
+    {
+      "date": "2026-09-20",
+      "prices": { "BTC": 81235.0, "ETH": 2502.0, "SOL": 110.73 },
+      "source": "CRYPTO_PORTFOLIO_DELTA_20260920.md (Blockchain.com / Fortune / Blockchain.com per that file's source column)"
+    }
+  ]
+}
