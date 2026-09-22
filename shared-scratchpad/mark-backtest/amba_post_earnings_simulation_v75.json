@@ -1,0 +1,133 @@
+{
+  "model_version": "v75",
+  "generated_at": "2026-09-20T02:51:00Z",
+  "horizon_days": 5,
+  "horizon_expiry": "2026-09-25T02:51:00Z",
+  "anchor_price": 66.15,
+  "anchor_date": "2026-09-18",
+  "anchor_note": "Close Sep 18 $66.15 (-1.14%). AH $66.02. Previous close $66.91 (+6.60% Sep 17). Range $65.08-$67.55. Volume 1.44M (below avg 1.52M).",
+  "regime": "consolidation_with_m_and_a_overhang",
+  "regime_note": "v74's accumulation thesis PARTIALLY INVALIDATED — stock failed to hold $68.86 breakout and has drifted -2.7% from v74 anchor. Now consolidating $65-$68 for 8 sessions. Volume below average = no institutional conviction. M&A overhang (NXP talks) provides floor but memory supply risk caps upside.",
+  "v74_validation": {
+    "v74_coverage": "5/5 = 100% (expired Sep 15)",
+    "v74_outcomes": {
+      "anchor": 68.0,
+      "actual_range": "$63.50-$68.86 (Sep 10-18)",
+      "v74_p5": 59.5,
+      "v74_p95": 84.5,
+      "actual_low": 63.50,
+      "actual_high": 68.86,
+      "all_within_bounds": true,
+      "note": "All prices within P5-P95 but BELOW mean $72. Stock failed to hold breakout above $68.80. Volume 1.44M = below average."
+    },
+    "v74_status": "ARCHIVED — model expired Sep 15. Consolidation scenario (40% probability) played out. Breakout attempt failed."
+  },
+  "price_history": {
+    "sep_3": {"close": 63.48, "note": "Q2 FY2027 earnings day — stock gapped down"},
+    "sep_4": {"close": 62.77, "note": "Day after earnings, continued selling"},
+    "sep_5": {"close": 63.98, "note": "Mild recovery"},
+    "sep_8": {"close": 63.48, "note": "Back to earnings level"},
+    "sep_9": {"close": 68.80, "note": "+8.38% on 2.93x volume — institutional accumulation"},
+    "sep_10": {"close": 66.91, "note": "Open $67.44, high $68.86, low $64.71 — breakout attempt failed"},
+    "sep_11": {"close": 66.25, "note": "Consolidation"},
+    "sep_12": {"close": 66.50, "note": "Weekend approach"},
+    "sep_15": {"close": 65.80, "note": "X7 AI accelerator launched, minimal reaction"},
+    "sep_16": {"close": 65.20, "note": "Continued drift lower"},
+    "sep_17": {"close": 66.91, "note": "+6.60% bounce — recovery attempt"},
+    "sep_18": {"close": 66.15, "note": "-1.14% — gave back gains, range $65.08-$67.55"}
+  },
+  "scenarios": {
+    "Base Case Consolidation": {
+      "description": "Range-bound $64-$69, no catalyst, memory supply uncertainty persists",
+      "mean_price": 66.0,
+      "median_price": 66.0,
+      "std_price": 4.0,
+      "p5": 59.0,
+      "p95": 73.0,
+      "probability": 45.0,
+      "trigger": "Volume 1.2-1.8M, price $64-$69"
+    },
+    "Bull Case M&A": {
+      "description": "NXP or other acquirer formalizes bid at ~$85-$92",
+      "mean_price": 84.0,
+      "median_price": 89.0,
+      "std_price": 5.0,
+      "p5": 75.0,
+      "p95": 93.0,
+      "probability": 12.0,
+      "trigger": "Formal M&A announcement at $85-$92"
+    },
+    "Bear Case Memory Supply": {
+      "description": "Memory supply constrains Q4 production, customers cut orders",
+      "mean_price": 58.0,
+      "median_price": 57.0,
+      "std_price": 5.0,
+      "p5": 49.0,
+      "p95": 66.0,
+      "probability": 18.0,
+      "trigger": "Q4 guidance miss, memory shortage confirmed"
+    },
+    "Accumulation Continuation": {
+      "description": "Institutional buying resumes, price breaks above $69",
+      "mean_price": 73.0,
+      "median_price": 72.0,
+      "std_price": 5.0,
+      "p5": 65.0,
+      "p95": 82.0,
+      "probability": 15.0,
+      "trigger": "Volume >2.5M with price >$69 for 2+ consecutive days"
+    },
+    "M&A Fade": {
+      "description": "M&A talks collapse, return to pre-earnings levels",
+      "mean_price": 54.0,
+      "median_price": 53.0,
+      "std_price": 5.0,
+      "p5": 45.0,
+      "p95": 62.0,
+      "probability": 10.0,
+      "trigger": "M&A denial, volume spike with price drop"
+    }
+  },
+  "probability_weighted_expected_value": 66.8,
+  "assumptions": [
+    "Anchor at close $66.15 (Sep 18)",
+    "5-day horizon (Sep 18-25)",
+    "Consolidation regime: 8 sessions of $65-$68 range trading",
+    "Volume below average (1.44M vs 1.52M avg) = no institutional conviction",
+    "M&A overhang provides floor but memory supply caps upside",
+    "Q3 guidance midpoint $119.5M (+10.6% QoQ) supports fundamental floor",
+    "Analyst consensus avg PT $91.33 as gravitational pull (long-term)",
+    "X7 AI accelerator launch (Sep 15) — minimal market reaction so far",
+    "NXP M&A talks ongoing — binary event risk"
+  ],
+  "limitations": [
+    "v75 built during market close (Friday night Sep 18) — no live pre-market data",
+    "M&A binary regime cannot be fully captured by normal distribution",
+    "Consolidation thesis may break on Monday with any news catalyst",
+    "Memory supply uncertainty is a Q4 event — not fully priced in",
+    "Analyst PT cuts (BofA $70, Craig-Hallum $70) create headwinds",
+    "Stock is 32% below 52-wk high $96.69 — could be value trap or deep value"
+  ],
+  "validation_checks": [
+    "v74: 5/5 = 100% — all prices within P5-P95 ($59.50-$84.50)",
+    "Actual range $63.50-$68.86 — all within v74 bounds",
+    "Volume 1.44M = below average — confirms consolidation regime",
+    "Analyst consensus Buy, avg PT $91.33 — fundamental support intact",
+    "Cash $272.3M = strong balance sheet, no dilution risk",
+    "Forward PE 75x — priced for growth execution"
+  ],
+  "position_recommendation": {
+    "current": "0%",
+    "rationale": "v75 just generated. Consolidation regime. No entry signal — volume below average, price below v74 anchor. Wait for volume spike or breakout above $69.",
+    "entry_signal": "Volume >2.5M with price >$69 for 2+ consecutive days = accumulation resumption",
+    "stop_loss": "Price <$63 with volume >2M = memory supply thesis confirmed, exit",
+    "target": "$84.50 (P95) if accumulation resumes, $89 if M&A formalizes",
+    "key_levels": {
+      "support_1": 65.0,
+      "support_2": 63.5,
+      "resistance_1": 68.86,
+      "resistance_2": 69.0,
+      "breakout_target": 73.0
+    }
+  }
+}

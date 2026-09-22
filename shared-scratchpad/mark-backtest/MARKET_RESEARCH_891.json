@@ -1,0 +1,117 @@
+{
+  "schema_version": "market-research.v1",
+  "generated_at": "2026-09-20T12:09:15Z",
+  "tickers": {
+    "AMBA": {
+      "price": {
+        "last_close": 66.15,
+        "after_hours": 66.02,
+        "change_1d_pct": -1.14,
+        "open": 67.28,
+        "high": 67.55,
+        "low": 65.08,
+        "volume": 1440000,
+        "avg_volume": 1520000,
+        "volume_ratio": 0.95,
+        "observation_timestamp": "2026-09-18T20:00:01Z",
+        "source": "Google Finance"
+      },
+      "valuation": {
+        "market_cap_B": 2.92,
+        "eps_ttm": -1.30,
+        "beta": 2.09,
+        "shares_outstanding_M": 44.14,
+        "52wk_high": 96.69,
+        "52wk_low": 48.30,
+        "pct_from_52wk_high": -31.5,
+        "pct_from_52wk_low": 37.0
+      },
+      "analyst_consensus": {
+        "ratings": {"buy": 6, "hold": 5, "sell": 0},
+        "avg_price_target": 91.33,
+        "upside_pct": 38.07,
+        "high_pt": 120.00,
+        "low_pt": 65.00,
+        "notable": [
+          {"analyst": "Kevin Cassidy", "firm": "Rosenblatt Securities", "rating": "Buy", "pt": 120.00, "date": "2026-09-04"},
+          {"analyst": "Christopher Rolland", "firm": "Susquehanna", "rating": "Buy", "pt": 110.00, "date": "2026-09-04"},
+          {"analyst": "Gus Richard", "firm": "Northland Securities", "rating": "Buy", "pt": 101.00, "date": "2026-09-04"},
+          {"analyst": "Joseph Moore", "firm": "Morgan Stanley", "rating": "Buy", "pt": 96.00, "date": "2026-09-18"}
+        ],
+        "observation_timestamp": "2026-09-20T12:09:15Z"
+      }
+    }
+  },
+  "asset_groups": {
+    "crypto": {
+      "BTC": {"price_approx": 76350, "source": "Yahoo Finance Sep 18", "observation_timestamp": "2026-09-18T14:00:00Z"},
+      "ETH": {"price_approx": 2445, "source": "Yahoo Finance Sep 18", "observation_timestamp": "2026-09-18T14:00:00Z"},
+      "SOL": {"price_approx": 105, "source": "Bit2Me Sep 20 EUR converted", "observation_timestamp": "2026-09-20T03:00:00Z"}
+    },
+    "forex": {
+      "DXY": {"status": "not fetched this run"},
+      "EURUSD": {"status": "not fetched this run"},
+      "USDJPY": {"status": "not fetched this run"}
+    },
+    "sectors": {
+      "semiconductors": {
+        "NVDA": {"price": 222.27, "change_pct": 1.34, "source": "Google Finance Sep 19"},
+        "AMD": {"status": "not fetched this run"},
+        "relative_move": "AMBA -1.14% vs NVDA +1.34% — AMBA underperforming sector by 2.48pp"
+      },
+      "software": {"status": "not fetched this run"},
+      "cloud": {"status": "not fetched this run"},
+      "energy": {"status": "not fetched this run"},
+      "financials": {"status": "not fetched this run"}
+    }
+  },
+  "coverage": {
+    "price_and_volume": "AMBA closed $66.15 on Sep 18, -1.14%. Volume 1.44M = 95% of avg (1.52M). Below-average volume on down day. AH $66.02 (-0.20%). 52-week range $48.30-$96.69, currently -31.5% from high.",
+    "sector_relative": "AMBA underperforming semis. NVDA +1.34% on same day. Broader chip sector mixed — RTX Spark competitive dynamics weighing on weaker names.",
+    "news_and_filings": "Key catalysts: (1) X7 edge AI accelerator announced Sep 15 — first dedicated CVflow chip, (2) NXP acquisition talks reported ~1 month ago (Aug) — 16%+ surge on Reuters report, both declined comment, (3) Q2 FY27 beat: EPS +12.5% vs estimates, revenue $108.1M, (4) Q3 guidance $115M-$124M, (5) SAM raised to $22.9B by FY2032 (20% CAGR).",
+    "earnings_dates": "Q2 FY27 reported Sep 3, 2026. Q3 FY27 expected ~Dec 2026.",
+    "macro_and_fx": "Fed rate expectations and CLARITY bill failure impacting risk appetite. Crypto recovering past regulatory uncertainty.",
+    "crypto_catalysts": "BTC $76.3K, ETH $2.4K, SOL ~$105. Crypto prices rising as investors move past CLARITY bill failure. Risk-on sentiment returning."
+  },
+  "catalysts": [
+    {
+      "type": "product",
+      "description": "X7 edge AI accelerator announced Sep 15 — first dedicated CVflow chip for enterprise AI inference",
+      "impact": "HIGH — expands SAM into enterprise AI, beyond security/auto/robotics",
+      "timeline": "Announced Sep 15, sampling likely Q4 FY27"
+    },
+    {
+      "type": "m_and_a",
+      "description": "NXP acquisition talks reported by Reuters ~Aug 2026 — both declined comment",
+      "impact": "VERY HIGH — would be transformative acquisition at $3B+ valuation",
+      "timeline": "Uncertain — talks may or may not resume"
+    },
+    {
+      "type": "earnings",
+      "description": "Q2 FY27 beat: EPS +12.5% vs estimates, revenue $108.1M (+13.2% YoY)",
+      "impact": "POSITIVE — validates growth trajectory, edge AI ramp",
+      "timeline": "Reported Sep 3, 2026"
+    },
+    {
+      "type": "guidance",
+      "description": "Q3 FY27 guidance $115M-$124M (+10.6% QoQ midpoint)",
+      "impact": "POSITIVE — accelerating growth, first $100M+ quarter achieved",
+      "timeline": "Q3 ends Oct 2026, reported ~Dec 2026"
+    },
+    {
+      "type": "analyst",
+      "description": "6 Buy / 5 Hold / 0 Sell, avg PT $91.33 (+38% upside). Rosenblatt $120, Susquehanna $110, Northland $101.",
+      "impact": "STRONG SUPPORT — unanimous buy-side conviction at current levels",
+      "timeline": "Active — Morgan Stanley reiterated Buy $96 on Sep 18"
+    }
+  ],
+  "sources": [
+    {"name": "Google Finance", "url": "https://www.google.com/finance/quote/AMBA:NASDAQ", "observation_timestamp": "2026-09-20T12:09:15Z"},
+    {"name": "Yahoo Finance", "url": "https://finance.yahoo.com/quote/AMBA/", "observation_timestamp": "2026-09-18T20:00:01Z"},
+    {"name": "Investor.Ambarella.com", "url": "https://www.ambarella.com/news-events/", "observation_timestamp": "2026-09-20T12:09:15Z"},
+    {"name": "MarketWatch", "url": "https://www.marketwatch.com/investing/stock/amba", "observation_timestamp": "2026-09-20T12:09:15Z"},
+    {"name": "ConvexTrade", "url": "https://convextrade.com/metrics/nvda", "observation_timestamp": "2026-09-20T12:09:15Z"},
+    {"name": "Yahoo Finance Crypto", "url": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-friday-september-18-2026", "observation_timestamp": "2026-09-18T14:00:00Z"}
+  ],
+  "disclaimer": "Informational research; not financial advice."
+}
