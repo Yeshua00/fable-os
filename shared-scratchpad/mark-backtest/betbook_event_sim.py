@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """betbook_event_sim.py — reproducible event simulation over the registered bet book.
 
-TASK-00095 (volatility-model). Generalizes the earlier 2-bet simulation to ALL
-THREE registered, K8-calibrated thesis bets: MU (horizon 2026-10-01), UNH
-(2026-10-13) and ASML (2026-10-14). The book's aggregate event risk is
-quantified before any horizon arrives. Same family, regenerated in place -
-no version chain, so K2 does not bind.
+TASK-00107 (volatility-model). Extends the earlier simulation to ALL FOUR
+registered, K8-calibrated thesis bets: MU (horizon 2026-10-01), UNH
+(2026-10-13), ASML (2026-10-14) and TSLA (2026-10-22). The book's aggregate
+event risk is quantified before any horizon arrives. This closes the gap the
+TSLA thesis recorded in its own limitations (INPUTS named only three bets).
+Regenerated in place - same family, no version chain, so K2 does not bind.
 
 Deliberately adds NO new market numbers: every input is read at run time from
 the three committed thesis artifacts, each of which already passed its own K8
@@ -45,7 +46,8 @@ OUT = DIR / "BETBOOK_EVENT_SIM.json"
 SCHEMA = "betbook-event-sim.v1"
 INPUTS = [DIR / "MU_THESIS_ACTIVE.json",
           DIR / "UNH_THESIS_ACTIVE.json",
-          DIR / "ASML_THESIS_ACTIVE.json"]
+          DIR / "ASML_THESIS_ACTIVE.json",
+          DIR / "TSLA_THESIS_ACTIVE.json"]
 RUN_ON = "2026-09-23"
 SEED = 20260923
 N_DRAWS = 200_000
@@ -352,13 +354,15 @@ def main(argv=None) -> int:
     multi = {f"all-{bk}": frechet_multi([ai[bk] for ai in a])
              for bk in ("miss", "hit")}
     doc = {
-        "schema_version": SCHEMA, "owner": "MARK", "task": "TASK-00095",
+        "schema_version": SCHEMA, "owner": "MARK", "task": "TASK-00107",
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "artifact_policy": ("ONE current simulation, regenerated in place "
                             "(atomic tmp+rename). No version chain (K2)."),
-        "revision_note": ("generalized from 2 bets to all 3 registered bets "
-                          "(MU, UNH, ASML) - the 2-bet limitation recorded in the "
-                          "previous revision is closed by this run"),
+        "revision_note": ("extended from 3 registered bets to all 4 (MU, UNH, "
+                          "ASML, TSLA) after the TSLA thesis registration "
+                          "(TASK-00104); the 'TSLA not yet in the joint "
+                          "simulation' limitation both the UNH and TSLA artifacts "
+                          "recorded is closed by this run"),
         "purpose": ("quantify the joint event risk of the registered bet book "
                     "before any horizon arrives; read-only simulation, no new "
                     "market numbers, no trades, no recommendations"),

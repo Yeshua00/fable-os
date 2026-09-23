@@ -1,27 +1,43 @@
 {
   "analytic": {
     "book_headlines": {
-      "p_all_decisive_indep": 0.363607,
-      "p_all_hit_indep": 0.125,
-      "p_all_miss_indep": 0.009763,
-      "p_at_least_one_decisive_indep": 0.97655,
-      "p_at_least_one_hit_indep": 0.875,
-      "p_at_least_one_miss_indep": 0.513966
+      "p_all_decisive_indep": 0.258925,
+      "p_all_hit_indep": 0.0625,
+      "p_all_miss_indep": 0.002071,
+      "p_at_least_one_decisive_indep": 0.993249,
+      "p_at_least_one_hit_indep": 0.9375,
+      "p_at_least_one_miss_indep": 0.617055
     },
     "frechet_bounds": {
       "n_way": {
         "all-hit": {
           "inter_hi": 0.5,
-          "inter_indep": 0.125,
+          "inter_indep": 0.0625,
           "inter_lo": 0.0
         },
         "all-miss": {
           "inter_hi": 0.209549791281,
-          "inter_indep": 0.009763466105,
+          "inter_indep": 0.002070839301,
           "inter_lo": 0.0
         }
       },
       "pairwise": {
+        "ASML-Q3-2026-REACTION-20261014&TSLA-Q3-2026-REACTION-20261022:hit": {
+          "inter_hi": 0.5,
+          "inter_indep": 0.25,
+          "inter_lo": 0.0,
+          "union_hi": 1.0,
+          "union_indep": 0.75,
+          "union_lo": 0.5
+        },
+        "ASML-Q3-2026-REACTION-20261014&TSLA-Q3-2026-REACTION-20261022:miss": {
+          "inter_hi": 0.212100833717,
+          "inter_indep": 0.045578032954,
+          "inter_lo": 0.0,
+          "union_hi": 0.426989347614,
+          "union_indep": 0.38141131466,
+          "union_lo": 0.214888513897
+        },
         "MU-Q4FY26-REACTION-20260930&ASML-Q3-2026-REACTION-20261014:hit": {
           "inter_hi": 0.5,
           "inter_indep": 0.25,
@@ -36,6 +52,22 @@
           "inter_lo": 0.0,
           "union_hi": 0.431710634589,
           "union_indep": 0.385118051294,
+          "union_lo": 0.216822120692
+        },
+        "MU-Q4FY26-REACTION-20260930&TSLA-Q3-2026-REACTION-20261022:hit": {
+          "inter_hi": 0.5,
+          "inter_indep": 0.25,
+          "inter_lo": 0.0,
+          "union_hi": 1.0,
+          "union_indep": 0.75,
+          "union_lo": 0.5
+        },
+        "MU-Q4FY26-REACTION-20260930&TSLA-Q3-2026-REACTION-20261022:miss": {
+          "inter_hi": 0.212100833717,
+          "inter_indep": 0.045988152567,
+          "inter_lo": 0.0,
+          "union_hi": 0.428922954408,
+          "union_indep": 0.382934801841,
           "union_lo": 0.216822120692
         },
         "MU-Q4FY26-REACTION-20260930&UNH-Q3-2026-REACTION-20261013:hit": {
@@ -69,37 +101,107 @@
           "union_hi": 0.424438305179,
           "union_indep": 0.379408461943,
           "union_lo": 0.214888513897
+        },
+        "UNH-Q3-2026-REACTION-20261013&TSLA-Q3-2026-REACTION-20261022:hit": {
+          "inter_hi": 0.5,
+          "inter_indep": 0.25,
+          "inter_lo": 0.0,
+          "union_hi": 1.0,
+          "union_indep": 0.75,
+          "union_lo": 0.5
+        },
+        "UNH-Q3-2026-REACTION-20261013&TSLA-Q3-2026-REACTION-20261022:miss": {
+          "inter_hi": 0.209549791281,
+          "inter_indep": 0.044445685436,
+          "inter_lo": 0.0,
+          "union_hi": 0.421650624998,
+          "union_indep": 0.377204939562,
+          "union_lo": 0.212100833717
         }
       }
     },
     "joint_independence": {
-      "hit|hit|hit": 0.125,
-      "hit|hit|miss": 0.053722,
-      "hit|hit|no_edge": 0.071278,
-      "hit|miss|hit": 0.052387,
-      "hit|miss|miss": 0.022515,
-      "hit|miss|no_edge": 0.029873,
-      "hit|no_edge|hit": 0.072613,
-      "hit|no_edge|miss": 0.031207,
-      "hit|no_edge|no_edge": 0.041405,
-      "miss|hit|hit": 0.054206,
-      "miss|hit|miss": 0.023296,
-      "miss|hit|no_edge": 0.030909,
-      "miss|miss|hit": 0.022718,
-      "miss|miss|miss": 0.009763,
-      "miss|miss|no_edge": 0.012954,
-      "miss|no_edge|hit": 0.031488,
-      "miss|no_edge|miss": 0.013533,
-      "miss|no_edge|no_edge": 0.017955,
-      "no_edge|hit|hit": 0.070794,
-      "no_edge|hit|miss": 0.030426,
-      "no_edge|hit|no_edge": 0.040369,
-      "no_edge|miss|hit": 0.02967,
-      "no_edge|miss|miss": 0.012751,
-      "no_edge|miss|no_edge": 0.016918,
-      "no_edge|no_edge|hit": 0.041125,
-      "no_edge|no_edge|miss": 0.017674,
-      "no_edge|no_edge|no_edge": 0.02345
+      "hit|hit|hit|hit": 0.0625,
+      "hit|hit|hit|miss": 0.026513,
+      "hit|hit|hit|no_edge": 0.035987,
+      "hit|hit|miss|hit": 0.026861,
+      "hit|hit|miss|miss": 0.011395,
+      "hit|hit|miss|no_edge": 0.015467,
+      "hit|hit|no_edge|hit": 0.035639,
+      "hit|hit|no_edge|miss": 0.015118,
+      "hit|hit|no_edge|no_edge": 0.020521,
+      "hit|miss|hit|hit": 0.026194,
+      "hit|miss|hit|miss": 0.011111,
+      "hit|miss|hit|no_edge": 0.015082,
+      "hit|miss|miss|hit": 0.011257,
+      "hit|miss|miss|miss": 0.004775,
+      "hit|miss|miss|no_edge": 0.006482,
+      "hit|miss|no_edge|hit": 0.014936,
+      "hit|miss|no_edge|miss": 0.006336,
+      "hit|miss|no_edge|no_edge": 0.0086,
+      "hit|no_edge|hit|hit": 0.036306,
+      "hit|no_edge|hit|miss": 0.015401,
+      "hit|no_edge|hit|no_edge": 0.020905,
+      "hit|no_edge|miss|hit": 0.015604,
+      "hit|no_edge|miss|miss": 0.006619,
+      "hit|no_edge|miss|no_edge": 0.008985,
+      "hit|no_edge|no_edge|hit": 0.020703,
+      "hit|no_edge|no_edge|miss": 0.008782,
+      "hit|no_edge|no_edge|no_edge": 0.011921,
+      "miss|hit|hit|hit": 0.027103,
+      "miss|hit|hit|miss": 0.011497,
+      "miss|hit|hit|no_edge": 0.015606,
+      "miss|hit|miss|hit": 0.011648,
+      "miss|hit|miss|miss": 0.004941,
+      "miss|hit|miss|no_edge": 0.006707,
+      "miss|hit|no_edge|hit": 0.015455,
+      "miss|hit|no_edge|miss": 0.006556,
+      "miss|hit|no_edge|no_edge": 0.008899,
+      "miss|miss|hit|hit": 0.011359,
+      "miss|miss|hit|miss": 0.004818,
+      "miss|miss|hit|no_edge": 0.00654,
+      "miss|miss|miss|hit": 0.004882,
+      "miss|miss|miss|miss": 0.002071,
+      "miss|miss|miss|no_edge": 0.002811,
+      "miss|miss|no_edge|hit": 0.006477,
+      "miss|miss|no_edge|miss": 0.002748,
+      "miss|miss|no_edge|no_edge": 0.003729,
+      "miss|no_edge|hit|hit": 0.015744,
+      "miss|no_edge|hit|miss": 0.006679,
+      "miss|no_edge|hit|no_edge": 0.009065,
+      "miss|no_edge|miss|hit": 0.006766,
+      "miss|no_edge|miss|miss": 0.00287,
+      "miss|no_edge|miss|no_edge": 0.003896,
+      "miss|no_edge|no_edge|hit": 0.008978,
+      "miss|no_edge|no_edge|miss": 0.003808,
+      "miss|no_edge|no_edge|no_edge": 0.005169,
+      "no_edge|hit|hit|hit": 0.035397,
+      "no_edge|hit|hit|miss": 0.015016,
+      "no_edge|hit|hit|no_edge": 0.020382,
+      "no_edge|hit|miss|hit": 0.015213,
+      "no_edge|hit|miss|miss": 0.006453,
+      "no_edge|hit|miss|no_edge": 0.00876,
+      "no_edge|hit|no_edge|hit": 0.020184,
+      "no_edge|hit|no_edge|miss": 0.008562,
+      "no_edge|hit|no_edge|no_edge": 0.011622,
+      "no_edge|miss|hit|hit": 0.014835,
+      "no_edge|miss|hit|miss": 0.006293,
+      "no_edge|miss|hit|no_edge": 0.008542,
+      "no_edge|miss|miss|hit": 0.006376,
+      "no_edge|miss|miss|miss": 0.002705,
+      "no_edge|miss|miss|no_edge": 0.003671,
+      "no_edge|miss|no_edge|hit": 0.008459,
+      "no_edge|miss|no_edge|miss": 0.003588,
+      "no_edge|miss|no_edge|no_edge": 0.004871,
+      "no_edge|no_edge|hit|hit": 0.020562,
+      "no_edge|no_edge|hit|miss": 0.008723,
+      "no_edge|no_edge|hit|no_edge": 0.01184,
+      "no_edge|no_edge|miss|hit": 0.008837,
+      "no_edge|no_edge|miss|miss": 0.003749,
+      "no_edge|no_edge|miss|no_edge": 0.005088,
+      "no_edge|no_edge|no_edge|hit": 0.011725,
+      "no_edge|no_edge|no_edge|miss": 0.004974,
+      "no_edge|no_edge|no_edge|no_edge": 0.006751
     },
     "per_bet": {
       "ASML-Q3-2026-REACTION-20261014": {
@@ -119,6 +221,15 @@
         "miss": 0.216822,
         "no_edge": 0.283178,
         "sigma_event_pct": 13.410461269275851
+      },
+      "TSLA-Q3-2026-REACTION-20261022": {
+        "band_pct": 6.3,
+        "hit": 0.5,
+        "horizon_end": "2026-10-22",
+        "k": 0.799153,
+        "miss": 0.212101,
+        "no_edge": 0.287899,
+        "sigma_event_pct": 7.883345923714496
       },
       "UNH-Q3-2026-REACTION-20261013": {
         "band_pct": 8.0,
@@ -141,7 +252,7 @@
     "the UNH leg is healthcare, so only 2 of 3 bets share the semiconductor/AI-capex factor - real residual dependence is therefore lower than a 3-semi book, but is still not assumed zero"
   ],
   "disclaimer": "Research/ops artifact for internal scorekeeping. Not financial advice.",
-  "generated_at": "2026-09-23T22:40:29Z",
+  "generated_at": "2026-09-23T23:48:12Z",
   "inputs": [
     {
       "band_pct": 10.5,
@@ -187,6 +298,21 @@
       "schema": "market-thesis-active.v1",
       "sha256": "4c5ef527597d8eafa7994872df1d19074169f99ceb71e444bcf6122644758ef8",
       "sigma_event_pct": 12.0318157182288
+    },
+    {
+      "band_pct": 6.3,
+      "bet_id": "TSLA-Q3-2026-REACTION-20261022",
+      "file": "TSLA_THESIS_ACTIVE.json",
+      "horizon_end": "2026-10-22",
+      "k_artifact": 0.7991530577198811,
+      "p_artifact": {
+        "hit": 0.5,
+        "miss": 0.21210083371665345,
+        "no_edge": 0.28789916628334655
+      },
+      "schema": "market-thesis-active.v1",
+      "sha256": "4f47a19db8b2b6bc02f59e47c7572fd70de15de7cf1ffd6cd8e56e75f928e70b",
+      "sigma_event_pct": 7.883345923714496
     }
   ],
   "limitations": [
@@ -198,64 +324,172 @@
     "simulation is prospective: all three outcomes are unscored until 2026-10-01, 2026-10-13 and 2026-10-14 with sourced quotes"
   ],
   "monte_carlo": {
-    "digest": "db48a0f5d9ba04adfbff3ed9aaa5a6c979ffb908898f115ece97cfb575096515",
+    "digest": "84a209794dfdc8f76eb8220fdf7273a15fb0b894a69308e59100abdd001da273",
     "joint_counts": {
-      "hit|hit|hit": 25101,
-      "hit|hit|miss": 10758,
-      "hit|hit|no_edge": 14333,
-      "hit|miss|hit": 10376,
-      "hit|miss|miss": 4497,
-      "hit|miss|no_edge": 5926,
-      "hit|no_edge|hit": 14686,
-      "hit|no_edge|miss": 6232,
-      "hit|no_edge|no_edge": 8335,
-      "miss|hit|hit": 10896,
-      "miss|hit|miss": 4683,
-      "miss|hit|no_edge": 6085,
-      "miss|miss|hit": 4467,
-      "miss|miss|miss": 1961,
-      "miss|miss|no_edge": 2563,
-      "miss|no_edge|hit": 6325,
-      "miss|no_edge|miss": 2730,
-      "miss|no_edge|no_edge": 3573,
-      "no_edge|hit|hit": 14064,
-      "no_edge|hit|miss": 6133,
-      "no_edge|hit|no_edge": 8021,
-      "no_edge|miss|hit": 5917,
-      "no_edge|miss|miss": 2513,
-      "no_edge|miss|no_edge": 3338,
-      "no_edge|no_edge|hit": 8143,
-      "no_edge|no_edge|miss": 3639,
-      "no_edge|no_edge|no_edge": 4705
+      "hit|hit|hit|hit": 12532,
+      "hit|hit|hit|miss": 5328,
+      "hit|hit|hit|no_edge": 7241,
+      "hit|hit|miss|hit": 5477,
+      "hit|hit|miss|miss": 2216,
+      "hit|hit|miss|no_edge": 3065,
+      "hit|hit|no_edge|hit": 7181,
+      "hit|hit|no_edge|miss": 3028,
+      "hit|hit|no_edge|no_edge": 4124,
+      "hit|miss|hit|hit": 5252,
+      "hit|miss|hit|miss": 2197,
+      "hit|miss|hit|no_edge": 2927,
+      "hit|miss|miss|hit": 2220,
+      "hit|miss|miss|miss": 987,
+      "hit|miss|miss|no_edge": 1290,
+      "hit|miss|no_edge|hit": 3015,
+      "hit|miss|no_edge|miss": 1186,
+      "hit|miss|no_edge|no_edge": 1725,
+      "hit|no_edge|hit|hit": 7283,
+      "hit|no_edge|hit|miss": 3097,
+      "hit|no_edge|hit|no_edge": 4306,
+      "hit|no_edge|miss|hit": 3151,
+      "hit|no_edge|miss|miss": 1282,
+      "hit|no_edge|miss|no_edge": 1799,
+      "hit|no_edge|no_edge|hit": 4077,
+      "hit|no_edge|no_edge|miss": 1813,
+      "hit|no_edge|no_edge|no_edge": 2445,
+      "miss|hit|hit|hit": 5412,
+      "miss|hit|hit|miss": 2346,
+      "miss|hit|hit|no_edge": 3138,
+      "miss|hit|miss|hit": 2328,
+      "miss|hit|miss|miss": 982,
+      "miss|hit|miss|no_edge": 1373,
+      "miss|hit|no_edge|hit": 3062,
+      "miss|hit|no_edge|miss": 1282,
+      "miss|hit|no_edge|no_edge": 1741,
+      "miss|miss|hit|hit": 2217,
+      "miss|miss|hit|miss": 968,
+      "miss|miss|hit|no_edge": 1282,
+      "miss|miss|miss|hit": 966,
+      "miss|miss|miss|miss": 399,
+      "miss|miss|miss|no_edge": 596,
+      "miss|miss|no_edge|hit": 1256,
+      "miss|miss|no_edge|miss": 539,
+      "miss|miss|no_edge|no_edge": 768,
+      "miss|no_edge|hit|hit": 3206,
+      "miss|no_edge|hit|miss": 1296,
+      "miss|no_edge|hit|no_edge": 1823,
+      "miss|no_edge|miss|hit": 1392,
+      "miss|no_edge|miss|miss": 558,
+      "miss|no_edge|miss|no_edge": 780,
+      "miss|no_edge|no_edge|hit": 1803,
+      "miss|no_edge|no_edge|miss": 733,
+      "miss|no_edge|no_edge|no_edge": 1037,
+      "no_edge|hit|hit|hit": 7066,
+      "no_edge|hit|hit|miss": 2968,
+      "no_edge|hit|hit|no_edge": 4030,
+      "no_edge|hit|miss|hit": 3066,
+      "no_edge|hit|miss|miss": 1256,
+      "no_edge|hit|miss|no_edge": 1811,
+      "no_edge|hit|no_edge|hit": 3929,
+      "no_edge|hit|no_edge|miss": 1765,
+      "no_edge|hit|no_edge|no_edge": 2327,
+      "no_edge|miss|hit|hit": 2929,
+      "no_edge|miss|hit|miss": 1226,
+      "no_edge|miss|hit|no_edge": 1762,
+      "no_edge|miss|miss|hit": 1244,
+      "no_edge|miss|miss|miss": 540,
+      "no_edge|miss|miss|no_edge": 729,
+      "no_edge|miss|no_edge|hit": 1681,
+      "no_edge|miss|no_edge|miss": 724,
+      "no_edge|miss|no_edge|no_edge": 933,
+      "no_edge|no_edge|hit|hit": 4007,
+      "no_edge|no_edge|hit|miss": 1765,
+      "no_edge|no_edge|hit|no_edge": 2371,
+      "no_edge|no_edge|miss|hit": 1870,
+      "no_edge|no_edge|miss|miss": 734,
+      "no_edge|no_edge|miss|no_edge": 1035,
+      "no_edge|no_edge|no_edge|hit": 2363,
+      "no_edge|no_edge|no_edge|miss": 998,
+      "no_edge|no_edge|no_edge|no_edge": 1344
     },
     "joint_prob": {
-      "hit|hit|hit": 0.125505,
-      "hit|hit|miss": 0.05379,
-      "hit|hit|no_edge": 0.071665,
-      "hit|miss|hit": 0.05188,
-      "hit|miss|miss": 0.022485,
-      "hit|miss|no_edge": 0.02963,
-      "hit|no_edge|hit": 0.07343,
-      "hit|no_edge|miss": 0.03116,
-      "hit|no_edge|no_edge": 0.041675,
-      "miss|hit|hit": 0.05448,
-      "miss|hit|miss": 0.023415,
-      "miss|hit|no_edge": 0.030425,
-      "miss|miss|hit": 0.022335,
-      "miss|miss|miss": 0.009805,
-      "miss|miss|no_edge": 0.012815,
-      "miss|no_edge|hit": 0.031625,
-      "miss|no_edge|miss": 0.01365,
-      "miss|no_edge|no_edge": 0.017865,
-      "no_edge|hit|hit": 0.07032,
-      "no_edge|hit|miss": 0.030665,
-      "no_edge|hit|no_edge": 0.040105,
-      "no_edge|miss|hit": 0.029585,
-      "no_edge|miss|miss": 0.012565,
-      "no_edge|miss|no_edge": 0.01669,
-      "no_edge|no_edge|hit": 0.040715,
-      "no_edge|no_edge|miss": 0.018195,
-      "no_edge|no_edge|no_edge": 0.023525
+      "hit|hit|hit|hit": 0.06266,
+      "hit|hit|hit|miss": 0.02664,
+      "hit|hit|hit|no_edge": 0.036205,
+      "hit|hit|miss|hit": 0.027385,
+      "hit|hit|miss|miss": 0.01108,
+      "hit|hit|miss|no_edge": 0.015325,
+      "hit|hit|no_edge|hit": 0.035905,
+      "hit|hit|no_edge|miss": 0.01514,
+      "hit|hit|no_edge|no_edge": 0.02062,
+      "hit|miss|hit|hit": 0.02626,
+      "hit|miss|hit|miss": 0.010985,
+      "hit|miss|hit|no_edge": 0.014635,
+      "hit|miss|miss|hit": 0.0111,
+      "hit|miss|miss|miss": 0.004935,
+      "hit|miss|miss|no_edge": 0.00645,
+      "hit|miss|no_edge|hit": 0.015075,
+      "hit|miss|no_edge|miss": 0.00593,
+      "hit|miss|no_edge|no_edge": 0.008625,
+      "hit|no_edge|hit|hit": 0.036415,
+      "hit|no_edge|hit|miss": 0.015485,
+      "hit|no_edge|hit|no_edge": 0.02153,
+      "hit|no_edge|miss|hit": 0.015755,
+      "hit|no_edge|miss|miss": 0.00641,
+      "hit|no_edge|miss|no_edge": 0.008995,
+      "hit|no_edge|no_edge|hit": 0.020385,
+      "hit|no_edge|no_edge|miss": 0.009065,
+      "hit|no_edge|no_edge|no_edge": 0.012225,
+      "miss|hit|hit|hit": 0.02706,
+      "miss|hit|hit|miss": 0.01173,
+      "miss|hit|hit|no_edge": 0.01569,
+      "miss|hit|miss|hit": 0.01164,
+      "miss|hit|miss|miss": 0.00491,
+      "miss|hit|miss|no_edge": 0.006865,
+      "miss|hit|no_edge|hit": 0.01531,
+      "miss|hit|no_edge|miss": 0.00641,
+      "miss|hit|no_edge|no_edge": 0.008705,
+      "miss|miss|hit|hit": 0.011085,
+      "miss|miss|hit|miss": 0.00484,
+      "miss|miss|hit|no_edge": 0.00641,
+      "miss|miss|miss|hit": 0.00483,
+      "miss|miss|miss|miss": 0.001995,
+      "miss|miss|miss|no_edge": 0.00298,
+      "miss|miss|no_edge|hit": 0.00628,
+      "miss|miss|no_edge|miss": 0.002695,
+      "miss|miss|no_edge|no_edge": 0.00384,
+      "miss|no_edge|hit|hit": 0.01603,
+      "miss|no_edge|hit|miss": 0.00648,
+      "miss|no_edge|hit|no_edge": 0.009115,
+      "miss|no_edge|miss|hit": 0.00696,
+      "miss|no_edge|miss|miss": 0.00279,
+      "miss|no_edge|miss|no_edge": 0.0039,
+      "miss|no_edge|no_edge|hit": 0.009015,
+      "miss|no_edge|no_edge|miss": 0.003665,
+      "miss|no_edge|no_edge|no_edge": 0.005185,
+      "no_edge|hit|hit|hit": 0.03533,
+      "no_edge|hit|hit|miss": 0.01484,
+      "no_edge|hit|hit|no_edge": 0.02015,
+      "no_edge|hit|miss|hit": 0.01533,
+      "no_edge|hit|miss|miss": 0.00628,
+      "no_edge|hit|miss|no_edge": 0.009055,
+      "no_edge|hit|no_edge|hit": 0.019645,
+      "no_edge|hit|no_edge|miss": 0.008825,
+      "no_edge|hit|no_edge|no_edge": 0.011635,
+      "no_edge|miss|hit|hit": 0.014645,
+      "no_edge|miss|hit|miss": 0.00613,
+      "no_edge|miss|hit|no_edge": 0.00881,
+      "no_edge|miss|miss|hit": 0.00622,
+      "no_edge|miss|miss|miss": 0.0027,
+      "no_edge|miss|miss|no_edge": 0.003645,
+      "no_edge|miss|no_edge|hit": 0.008405,
+      "no_edge|miss|no_edge|miss": 0.00362,
+      "no_edge|miss|no_edge|no_edge": 0.004665,
+      "no_edge|no_edge|hit|hit": 0.020035,
+      "no_edge|no_edge|hit|miss": 0.008825,
+      "no_edge|no_edge|hit|no_edge": 0.011855,
+      "no_edge|no_edge|miss|hit": 0.00935,
+      "no_edge|no_edge|miss|miss": 0.00367,
+      "no_edge|no_edge|miss|no_edge": 0.005175,
+      "no_edge|no_edge|no_edge|hit": 0.011815,
+      "no_edge|no_edge|no_edge|miss": 0.00499,
+      "no_edge|no_edge|no_edge|no_edge": 0.00672
     },
     "margins": [
       {
@@ -272,6 +506,11 @@
         "hit": 0.499875,
         "miss": 0.21573,
         "no_edge": 0.284395
+      },
+      {
+        "hit": 0.499925,
+        "miss": 0.211065,
+        "no_edge": 0.28901
       }
     ],
     "n": 200000,
@@ -293,8 +532,8 @@
       "check": "V9 digest is seed-sensitive (seed+1 gives a different digest)",
       "id": "NC2",
       "observed": {
-        "digest_a": "db48a0f5d9ba04ad",
-        "digest_b": "3c178d5179349dd5",
+        "digest_a": "84a209794dfdc8f7",
+        "digest_b": "09b9cd8fedc5e0c8",
         "seed_a": 20260923,
         "seed_b": 20260924
       },
@@ -312,9 +551,9 @@
   ],
   "owner": "MARK",
   "purpose": "quantify the joint event risk of the registered bet book before any horizon arrives; read-only simulation, no new market numbers, no trades, no recommendations",
-  "revision_note": "generalized from 2 bets to all 3 registered bets (MU, UNH, ASML) - the 2-bet limitation recorded in the previous revision is closed by this run",
+  "revision_note": "extended from 3 registered bets to all 4 (MU, UNH, ASML, TSLA) after the TSLA thesis registration (TASK-00104); the 'TSLA not yet in the joint simulation' limitation both the UNH and TSLA artifacts recorded is closed by this run",
   "schema_version": "betbook-event-sim.v1",
-  "task": "TASK-00095",
+  "task": "TASK-00107",
   "validation": [
     {
       "check": "all inputs parse as market-thesis-active.v1 with sha256 recorded",
@@ -329,6 +568,11 @@
           "bet_id": "MU-Q4FY26-REACTION-20260930",
           "schema": "market-thesis-active.v1",
           "sha256": "80c82d8fdc0e86e0"
+        },
+        "TSLA_THESIS_ACTIVE.json": {
+          "bet_id": "TSLA-Q3-2026-REACTION-20261022",
+          "schema": "market-thesis-active.v1",
+          "sha256": "4f47a19db8b2b6bc"
         },
         "UNH_THESIS_ACTIVE.json": {
           "bet_id": "UNH-Q3-2026-REACTION-20261013",
@@ -349,6 +593,10 @@
         "MU-Q4FY26-REACTION-20260930": {
           "k_artifact": 0.7829708306944007,
           "k_recomputed": 0.7829708307
+        },
+        "TSLA-Q3-2026-REACTION-20261022": {
+          "k_artifact": 0.7991530577198811,
+          "k_recomputed": 0.7991530577
         },
         "UNH-Q3-2026-REACTION-20261013": {
           "k_artifact": 0.8079843653699903,
@@ -389,6 +637,20 @@
             "recomputed": 0.283177879308
           }
         },
+        "TSLA-Q3-2026-REACTION-20261022": {
+          "hit": {
+            "artifact": 0.5,
+            "recomputed": 0.5
+          },
+          "miss": {
+            "artifact": 0.21210083371665345,
+            "recomputed": 0.212100833717
+          },
+          "no_edge": {
+            "artifact": 0.28789916628334655,
+            "recomputed": 0.287899166283
+          }
+        },
         "UNH-Q3-2026-REACTION-20261013": {
           "hit": {
             "artifact": 0.5,
@@ -412,6 +674,7 @@
       "observed": {
         "ASML-Q3-2026-REACTION-20261014": 1.0,
         "MU-Q4FY26-REACTION-20260930": 1.0,
+        "TSLA-Q3-2026-REACTION-20261022": 1.0,
         "UNH-Q3-2026-REACTION-20261013": 1.0
       },
       "pass": true
@@ -431,6 +694,11 @@
             "miss": 0.216822120692,
             "no_edge": 0.283177879308
           },
+          "TSLA-Q3-2026-REACTION-20261022": {
+            "hit": 0.5,
+            "miss": 0.212100833717,
+            "no_edge": 0.287899166283
+          },
           "UNH-Q3-2026-REACTION-20261013": {
             "hit": 0.5,
             "miss": 0.209549791281,
@@ -445,13 +713,13 @@
       "check": "every joint cell == product of per-bet analytics (independence)",
       "id": "V6",
       "observed": {
-        "cells": 27,
+        "cells": 81,
         "max_abs_dev": 0.0
       },
       "pass": true
     },
     {
-      "check": "MC margins and all 27 joint cells within 3.0 SE of analytic (n=200000)",
+      "check": "MC margins and all 81 joint cells within 3.0 SE of analytic (n=200000)",
       "id": "V7",
       "observed": {
         "ASML-Q3-2026-REACTION-20261014:hit": {
@@ -490,6 +758,24 @@
           "mc": 0.282365,
           "tol": 0.003022
         },
+        "TSLA-Q3-2026-REACTION-20261022:hit": {
+          "analytic": 0.5,
+          "dev": 7.5e-05,
+          "mc": 0.499925,
+          "tol": 0.003354
+        },
+        "TSLA-Q3-2026-REACTION-20261022:miss": {
+          "analytic": 0.212101,
+          "dev": 0.001036,
+          "mc": 0.211065,
+          "tol": 0.002742
+        },
+        "TSLA-Q3-2026-REACTION-20261022:no_edge": {
+          "analytic": 0.287899,
+          "dev": 0.001111,
+          "mc": 0.28901,
+          "tol": 0.003037
+        },
         "UNH-Q3-2026-REACTION-20261013:hit": {
           "analytic": 0.5,
           "dev": 0.00037,
@@ -509,8 +795,8 @@
           "tol": 0.003045
         },
         "worst_joint_cell": {
-          "cell": "no_edge|no_edge|miss",
-          "z": 1.767
+          "cell": "no_edge|no_edge|miss|hit",
+          "z": 2.45
         }
       },
       "pass": true
@@ -519,6 +805,22 @@
       "check": "independence estimates lie inside the Frechet bounds (pairwise and N-way)",
       "id": "V8",
       "observed": {
+        "ASML-Q&TSLA-Q:hit": {
+          "inter_hi": 0.5,
+          "inter_indep": 0.25,
+          "inter_lo": 0.0,
+          "union_hi": 1.0,
+          "union_indep": 0.75,
+          "union_lo": 0.5
+        },
+        "ASML-Q&TSLA-Q:miss": {
+          "inter_hi": 0.212100833717,
+          "inter_indep": 0.045578032954,
+          "inter_lo": 0.0,
+          "union_hi": 0.426989347614,
+          "union_indep": 0.38141131466,
+          "union_lo": 0.214888513897
+        },
         "MU-Q4F&ASML-Q:hit": {
           "inter_hi": 0.5,
           "inter_indep": 0.25,
@@ -533,6 +835,22 @@
           "inter_lo": 0.0,
           "union_hi": 0.431710634589,
           "union_indep": 0.385118051294,
+          "union_lo": 0.216822120692
+        },
+        "MU-Q4F&TSLA-Q:hit": {
+          "inter_hi": 0.5,
+          "inter_indep": 0.25,
+          "inter_lo": 0.0,
+          "union_hi": 1.0,
+          "union_indep": 0.75,
+          "union_lo": 0.5
+        },
+        "MU-Q4F&TSLA-Q:miss": {
+          "inter_hi": 0.212100833717,
+          "inter_indep": 0.045988152567,
+          "inter_lo": 0.0,
+          "union_hi": 0.428922954408,
+          "union_indep": 0.382934801841,
           "union_lo": 0.216822120692
         },
         "MU-Q4F&UNH-Q3:hit": {
@@ -567,14 +885,30 @@
           "union_indep": 0.379408461943,
           "union_lo": 0.214888513897
         },
-        "all-3-way:hit": {
+        "UNH-Q3&TSLA-Q:hit": {
           "inter_hi": 0.5,
-          "inter_indep": 0.125,
+          "inter_indep": 0.25,
+          "inter_lo": 0.0,
+          "union_hi": 1.0,
+          "union_indep": 0.75,
+          "union_lo": 0.5
+        },
+        "UNH-Q3&TSLA-Q:miss": {
+          "inter_hi": 0.209549791281,
+          "inter_indep": 0.044445685436,
+          "inter_lo": 0.0,
+          "union_hi": 0.421650624998,
+          "union_indep": 0.377204939562,
+          "union_lo": 0.212100833717
+        },
+        "all-4-way:hit": {
+          "inter_hi": 0.5,
+          "inter_indep": 0.0625,
           "inter_lo": 0.0
         },
-        "all-3-way:miss": {
+        "all-4-way:miss": {
           "inter_hi": 0.209549791281,
-          "inter_indep": 0.009763466105,
+          "inter_indep": 0.002070839301,
           "inter_lo": 0.0
         }
       },
@@ -584,8 +918,8 @@
       "check": "MC is deterministic for a fixed seed (digest matches on re-run)",
       "id": "V9",
       "observed": {
-        "first": "db48a0f5d9ba04ad",
-        "second": "db48a0f5d9ba04ad"
+        "first": "84a209794dfdc8f7",
+        "second": "84a209794dfdc8f7"
       },
       "pass": true
     },
@@ -595,6 +929,7 @@
       "observed": {
         "ASML-Q3-2026-REACTION-20261014": "2026-10-14",
         "MU-Q4FY26-REACTION-20260930": "2026-10-01",
+        "TSLA-Q3-2026-REACTION-20261022": "2026-10-22",
         "UNH-Q3-2026-REACTION-20261013": "2026-10-13"
       },
       "pass": true
