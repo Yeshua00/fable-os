@@ -1,0 +1,614 @@
+{
+  "assumptions": [
+    "last sourced quote per UTC day approximates that day's close",
+    "log returns; zero drift over a 2-day horizon (drift is not an edge claim)",
+    "analytic leg assumes normal increments; the empirical legs use observed returns",
+    "bootstrap leg resamples daily returns i.i.d. (no vol clustering)",
+    "overlapping leg uses every consecutive 2-day window",
+    "the band is judged on BTC, the mark-l7-v1 primary instrument",
+    "sigma is a point estimate from the window shown; no confidence interval is claimed"
+  ],
+  "data_quality_findings": {
+    "action": "record sourced quotes through the delta check's baseline store (crypto_baselines.json, one owner) instead of relying on the ledger's raw checks; re-verify the flagged prints before reuse",
+    "consequence": "the ledger's check history is not a usable price series: it holds impossible single-day moves and disagrees with the sourced snapshots on overlapping dates. It must not be used to score an outcome (K6).",
+    "cross_source": {
+      "disagreements": [
+        {
+          "date": "2026-08-28",
+          "diff_pct": 23.65,
+          "ledger_price": 96000.0,
+          "snapshot_price": 77639.0,
+          "symbol": "BTC"
+        }
+      ],
+      "shared_date_count": 3
+    },
+    "ledger_implausible_prints": [
+      {
+        "date": "2026-08-17",
+        "gap_days": 1,
+        "limit_pct": 41.91,
+        "log_return": 0.8988,
+        "move_pct": 145.66,
+        "source": "thesis_ledger",
+        "symbol": "ETH"
+      },
+      {
+        "date": "2026-08-17",
+        "gap_days": 1,
+        "limit_pct": 41.91,
+        "log_return": 1.2008,
+        "move_pct": 232.29,
+        "source": "thesis_ledger",
+        "symbol": "SOL"
+      }
+    ]
+  },
+  "decision": {
+    "band_k_sigmas_btc": 1.3521256303560982,
+    "binding_rule": "mark-l7-v1 stays UNCHANGED for CRYPTO-MOM-20260922: re-banding after entry would be a goalpost move. This calibration is pre-registered and applies to new bets.",
+    "calibrated_band_pct_for_50pct_decisive": 0.998,
+    "calibrated_horizon_days_for_2pct_band": 8.0,
+    "expected_no_edge_pct_btc": 82.36648705944259,
+    "for_future_bets": "state the calibrated k and the expected NO_EDGE frequency up front; a 2.0% band on a 2-day horizon is decided by noise too rarely to test a 2-day momentum claim - use the calibrated band or horizon above, or lengthen the horizon",
+    "p_outside_2d_btc": 0.17633512940557416,
+    "verdict": "BAND_TOO_WIDE_RARELY_DECISIVE"
+  },
+  "disclaimer": "Research/ops artifact for internal scorekeeping. Not financial advice.",
+  "estimates_primary": {
+    "BTC": {
+      "band_k_sigmas": 1.3521256303560982,
+      "band_k_sigmas_robust": 1.1567065204117033,
+      "expected_abs_move_pct": 1.1801929390137114,
+      "expected_no_edge_pct": 82.36648705944259,
+      "max_gap_days": 1,
+      "overlapping_se": 0.1440441656194841,
+      "overlapping_windows": 7,
+      "p_outside_analytic": 0.17633512940557416,
+      "p_outside_bootstrap_iid": 0.17125,
+      "p_outside_mc": 0.1766,
+      "p_outside_overlapping": 0.0,
+      "points": 9,
+      "returns": 8,
+      "sigma_daily_pct": 1.0459187597831756,
+      "sigma_daily_robust_pct": 1.2226208959812366,
+      "sigma_horizon_pct": 1.4791524952258144,
+      "sources": [
+        "MARKET_RESEARCH_553.json",
+        "MARKET_RESEARCH_596.json",
+        "MARKET_RESEARCH_626.json",
+        "MARKET_RESEARCH_667.json",
+        "MARKET_RESEARCH_696.json",
+        "MARKET_RESEARCH_757.json",
+        "MARKET_RESEARCH_797.json",
+        "MARKET_RESEARCH_839.json",
+        "MARKET_RESEARCH_840.json"
+      ],
+      "span": "2026-08-28..2026-09-05"
+    },
+    "ETH": {
+      "band_k_sigmas": 1.1015342230709315,
+      "band_k_sigmas_robust": 1.0061841219916303,
+      "expected_abs_move_pct": 1.4486786594400471,
+      "expected_no_edge_pct": 72.93357817664274,
+      "max_gap_days": 1,
+      "overlapping_se": 0.16793072517371202,
+      "overlapping_windows": 7,
+      "p_outside_analytic": 0.27066421823357256,
+      "p_outside_bootstrap_iid": 0.28182,
+      "p_outside_mc": 0.271475,
+      "p_outside_overlapping": 0.14285714285714285,
+      "points": 9,
+      "returns": 8,
+      "sigma_daily_pct": 1.2838580343245758,
+      "sigma_daily_robust_pct": 1.4055216450581782,
+      "sigma_horizon_pct": 1.8156494443034779,
+      "sources": [
+        "MARKET_RESEARCH_553.json",
+        "MARKET_RESEARCH_596.json",
+        "MARKET_RESEARCH_626.json",
+        "MARKET_RESEARCH_667.json",
+        "MARKET_RESEARCH_696.json",
+        "MARKET_RESEARCH_730.json",
+        "MARKET_RESEARCH_797.json",
+        "MARKET_RESEARCH_839.json",
+        "MARKET_RESEARCH_840.json"
+      ],
+      "span": "2026-08-28..2026-09-05"
+    },
+    "SOL": {
+      "band_k_sigmas": 0.5454576692537235,
+      "band_k_sigmas_robust": 0.6119760430276255,
+      "expected_abs_move_pct": 2.925559968363828,
+      "expected_no_edge_pct": 41.45612133456582,
+      "max_gap_days": 1,
+      "overlapping_se": 0.18620273656690667,
+      "overlapping_windows": 7,
+      "p_outside_analytic": 0.5854387866543418,
+      "p_outside_bootstrap_iid": 0.59469,
+      "p_outside_mc": 0.58501,
+      "p_outside_overlapping": 0.42857142857142855,
+      "points": 9,
+      "returns": 8,
+      "sigma_daily_pct": 2.592710015990743,
+      "sigma_daily_robust_pct": 2.310896935403818,
+      "sigma_horizon_pct": 3.6666456679146733,
+      "sources": [
+        "MARKET_RESEARCH_553.json",
+        "MARKET_RESEARCH_596.json",
+        "MARKET_RESEARCH_626.json",
+        "MARKET_RESEARCH_667.json",
+        "MARKET_RESEARCH_696.json",
+        "MARKET_RESEARCH_730.json",
+        "MARKET_RESEARCH_797.json",
+        "MARKET_RESEARCH_839.json",
+        "MARKET_RESEARCH_840.json"
+      ],
+      "span": "2026-08-28..2026-09-05"
+    }
+  },
+  "estimates_secondary_ledger": {
+    "BTC": {
+      "band_k_sigmas": 0.166245501300093,
+      "band_k_sigmas_robust": 0.5513382040126683,
+      "expected_abs_move_pct": 9.598871001779333,
+      "expected_no_edge_pct": 13.203624723541285,
+      "max_gap_days": 25,
+      "overlapping_se": 0.11284339032058831,
+      "overlapping_windows": 9,
+      "p_outside_analytic": 0.8679637527645871,
+      "p_outside_bootstrap_iid": 0.72048,
+      "p_outside_mc": 0.867865,
+      "p_outside_overlapping": 0.5555555555555556,
+      "points": 11,
+      "returns": 10,
+      "sigma_daily_pct": 8.506777935724532,
+      "sigma_daily_robust_pct": 2.5650563521271965,
+      "sigma_horizon_pct": 12.030400728797835,
+      "sources": [],
+      "span": "2026-08-14..2026-09-22"
+    },
+    "ETH": {
+      "band_k_sigmas": 0.037942449374900815,
+      "band_k_sigmas_robust": 0.8585579580150003,
+      "expected_abs_move_pct": 42.05762010349661,
+      "expected_no_edge_pct": 3.0266432306475854,
+      "max_gap_days": 25,
+      "overlapping_se": 0.05710650418483517,
+      "overlapping_windows": 9,
+      "p_outside_analytic": 0.9697335676935241,
+      "p_outside_bootstrap_iid": 0.688695,
+      "p_outside_mc": 0.9694,
+      "p_outside_overlapping": 0.6666666666666666,
+      "points": 11,
+      "returns": 10,
+      "sigma_daily_pct": 37.2725953561819,
+      "sigma_daily_robust_pct": 1.6471963822253528,
+      "sigma_horizon_pct": 52.71140985755689,
+      "sources": [],
+      "span": "2026-08-14..2026-09-22"
+    },
+    "SOL": {
+      "band_k_sigmas": 0.026699587228896326,
+      "band_k_sigmas_robust": 0.1513495498003127,
+      "expected_abs_move_pct": 59.767557750056454,
+      "expected_no_edge_pct": 2.1300657640296317,
+      "max_gap_days": 25,
+      "overlapping_se": 0.048128231059658855,
+      "overlapping_windows": 9,
+      "p_outside_analytic": 0.9786993423597037,
+      "p_outside_bootstrap_iid": 0.850275,
+      "p_outside_mc": 0.97872,
+      "p_outside_overlapping": 0.8888888888888888,
+      "points": 11,
+      "returns": 10,
+      "sigma_daily_pct": 52.967618946652685,
+      "sigma_daily_robust_pct": 9.34402225998675,
+      "sigma_horizon_pct": 74.90752508096634,
+      "sources": [],
+      "span": "2026-08-14..2026-09-22"
+    }
+  },
+  "generated_at": "2026-09-23T05:54:22Z",
+  "inputs": {
+    "horizon_days": 2,
+    "mc_draws": 200000,
+    "primary": {
+      "daily_points": {
+        "BTC": 9,
+        "ETH": 9,
+        "SOL": 9
+      },
+      "dir": "/Users/joshuahagen/fable-os/shared-scratchpad/mark-backtest",
+      "files_scanned": 340,
+      "kind": "MARKET_RESEARCH*.json snapshot family (sourced quotes)",
+      "spans": {
+        "BTC": "2026-08-28..2026-09-05",
+        "ETH": "2026-08-28..2026-09-05",
+        "SOL": "2026-08-28..2026-09-05"
+      }
+    },
+    "secondary": {
+      "daily_points": {
+        "BTC": 11,
+        "ETH": 11,
+        "SOL": 11
+      },
+      "kind": "thesis ledger check history",
+      "path": "/Users/joshuahagen/.freebuff/market-research/theses.jsonl",
+      "sha256": "7bacf3846293195fbd459aa6dbaa90bda68735ad56c66cc2799835bf6fdd09d9",
+      "spans": {
+        "BTC": "2026-08-14..2026-09-22",
+        "ETH": "2026-08-14..2026-09-22",
+        "SOL": "2026-08-14..2026-09-22"
+      }
+    },
+    "seed": 20260923,
+    "threshold_pct": 2.0
+  },
+  "k2_rationale": "K2 (artifact-churn freeze) is tripped, so this ships as one owned module + its generated JSON rather than vol-sim version 92. It produces evidence.",
+  "limitations": [
+    "Primary window is 9 contiguous daily points (2026-08-28..2026-09-05): 8 returns. That is below the n>=10 MARK requires before publishing a rate (K3), so sigma here is directional evidence, not a forecast.",
+    "The primary window is a calmer regime than the 2026-09-10..09-22 run in the ledger (BTC ~63.5k -> ~86k); if that move was real, true recent vol is higher and the band is even more decisive than stated.",
+    "Fat tails and vol clustering are not modelled; both normal and i.i.d. legs understate true tail frequency, so p_outside is a lower bound.",
+    "Both sources are internally generated artifacts, not exchange data; a bad write in the snapshot family would propagate here undetected beyond the V7 gate.",
+    "No fresh quote was taken, so the horizon-end score for CRYPTO-MOM-20260922 still needs a sourced quote at 2026-09-24."
+  ],
+  "owner": "MARK",
+  "purpose": "Calibrate the mark-l7-v1 +/-2.0% / 2-day band of CRYPTO-MOM-20260922 against realized volatility so the bet is either testable or provably not, and stop scoring bets against a corrupt price series.",
+  "schema_version": "bet-threshold-calibration.v1",
+  "validation": [
+    {
+      "check": "seeded MC matches closed form",
+      "id": "V1-BTC",
+      "observed": 0.000265,
+      "pass": true,
+      "scope": "primary",
+      "tolerance": 0.005
+    },
+    {
+      "check": "model legs (closed form, i.i.d. bootstrap) agree on the call",
+      "id": "V2-BTC",
+      "observed": [
+        false,
+        false
+      ],
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "small-sample frequency within 2 SE + 0.05 of the model",
+      "id": "V8-BTC",
+      "observed": {
+        "gap": 0.176335,
+        "n_windows": 7,
+        "tolerance": 0.338088
+      },
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "outside/inside partition sums to 1",
+      "id": "V3-BTC",
+      "observed": 1.0,
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "series is contiguous (max gap <= 1 day)",
+      "id": "V5-BTC",
+      "observed": 1,
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "no implausible single-step move",
+      "id": "V7-BTC",
+      "observed": 0,
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "seeded MC matches closed form",
+      "id": "V1-ETH",
+      "observed": 0.000811,
+      "pass": true,
+      "scope": "primary",
+      "tolerance": 0.005
+    },
+    {
+      "check": "model legs (closed form, i.i.d. bootstrap) agree on the call",
+      "id": "V2-ETH",
+      "observed": [
+        false,
+        false
+      ],
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "small-sample frequency within 2 SE + 0.05 of the model",
+      "id": "V8-ETH",
+      "observed": {
+        "gap": 0.127807,
+        "n_windows": 7,
+        "tolerance": 0.385861
+      },
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "outside/inside partition sums to 1",
+      "id": "V3-ETH",
+      "observed": 1.0,
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "series is contiguous (max gap <= 1 day)",
+      "id": "V5-ETH",
+      "observed": 1,
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "no implausible single-step move",
+      "id": "V7-ETH",
+      "observed": 0,
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "seeded MC matches closed form",
+      "id": "V1-SOL",
+      "observed": 0.000429,
+      "pass": true,
+      "scope": "primary",
+      "tolerance": 0.005
+    },
+    {
+      "check": "model legs (closed form, i.i.d. bootstrap) agree on the call",
+      "id": "V2-SOL",
+      "observed": [
+        true,
+        true
+      ],
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "small-sample frequency within 2 SE + 0.05 of the model",
+      "id": "V8-SOL",
+      "observed": {
+        "gap": 0.156867,
+        "n_windows": 7,
+        "tolerance": 0.422405
+      },
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "outside/inside partition sums to 1",
+      "id": "V3-SOL",
+      "observed": 1.0,
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "series is contiguous (max gap <= 1 day)",
+      "id": "V5-SOL",
+      "observed": 1,
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "no implausible single-step move",
+      "id": "V7-SOL",
+      "observed": 0,
+      "pass": true,
+      "scope": "primary"
+    },
+    {
+      "check": "seeded MC matches closed form",
+      "id": "V1-BTC",
+      "observed": 9.9e-05,
+      "pass": true,
+      "scope": "secondary",
+      "tolerance": 0.005
+    },
+    {
+      "check": "model legs (closed form, i.i.d. bootstrap) agree on the call",
+      "id": "V2-BTC",
+      "observed": [
+        true,
+        true
+      ],
+      "pass": true,
+      "scope": "secondary"
+    },
+    {
+      "check": "small-sample frequency within 2 SE + 0.05 of the model",
+      "id": "V8-BTC",
+      "observed": {
+        "gap": 0.312408,
+        "n_windows": 9,
+        "tolerance": 0.275687
+      },
+      "pass": false,
+      "scope": "secondary"
+    },
+    {
+      "check": "outside/inside partition sums to 1",
+      "id": "V3-BTC",
+      "observed": 1.0,
+      "pass": true,
+      "scope": "secondary"
+    },
+    {
+      "check": "series is contiguous (max gap <= 1 day)",
+      "id": "V5-BTC",
+      "observed": 25,
+      "pass": false,
+      "scope": "secondary"
+    },
+    {
+      "check": "no implausible single-step move",
+      "id": "V7-BTC",
+      "observed": 0,
+      "pass": true,
+      "scope": "secondary"
+    },
+    {
+      "check": "seeded MC matches closed form",
+      "id": "V1-ETH",
+      "observed": 0.000334,
+      "pass": true,
+      "scope": "secondary",
+      "tolerance": 0.005
+    },
+    {
+      "check": "model legs (closed form, i.i.d. bootstrap) agree on the call",
+      "id": "V2-ETH",
+      "observed": [
+        true,
+        true
+      ],
+      "pass": true,
+      "scope": "secondary"
+    },
+    {
+      "check": "small-sample frequency within 2 SE + 0.05 of the model",
+      "id": "V8-ETH",
+      "observed": {
+        "gap": 0.303067,
+        "n_windows": 9,
+        "tolerance": 0.164213
+      },
+      "pass": false,
+      "scope": "secondary"
+    },
+    {
+      "check": "outside/inside partition sums to 1",
+      "id": "V3-ETH",
+      "observed": 1.0,
+      "pass": true,
+      "scope": "secondary"
+    },
+    {
+      "check": "series is contiguous (max gap <= 1 day)",
+      "id": "V5-ETH",
+      "observed": 25,
+      "pass": false,
+      "scope": "secondary"
+    },
+    {
+      "check": "no implausible single-step move",
+      "id": "V7-ETH",
+      "observed": 1,
+      "pass": false,
+      "scope": "secondary"
+    },
+    {
+      "check": "seeded MC matches closed form",
+      "id": "V1-SOL",
+      "observed": 2.1e-05,
+      "pass": true,
+      "scope": "secondary",
+      "tolerance": 0.005
+    },
+    {
+      "check": "model legs (closed form, i.i.d. bootstrap) agree on the call",
+      "id": "V2-SOL",
+      "observed": [
+        true,
+        true
+      ],
+      "pass": true,
+      "scope": "secondary"
+    },
+    {
+      "check": "small-sample frequency within 2 SE + 0.05 of the model",
+      "id": "V8-SOL",
+      "observed": {
+        "gap": 0.08981,
+        "n_windows": 9,
+        "tolerance": 0.146256
+      },
+      "pass": true,
+      "scope": "secondary"
+    },
+    {
+      "check": "outside/inside partition sums to 1",
+      "id": "V3-SOL",
+      "observed": 1.0,
+      "pass": true,
+      "scope": "secondary"
+    },
+    {
+      "check": "series is contiguous (max gap <= 1 day)",
+      "id": "V5-SOL",
+      "observed": 25,
+      "pass": false,
+      "scope": "secondary"
+    },
+    {
+      "check": "no implausible single-step move",
+      "id": "V7-SOL",
+      "observed": 1,
+      "pass": false,
+      "scope": "secondary"
+    },
+    {
+      "check": "same seed reproduces exactly",
+      "id": "V4",
+      "observed": [
+        true,
+        0.0013
+      ],
+      "pass": true,
+      "scope": "global"
+    },
+    {
+      "check": "zero-vol input -> p_outside 0, no crash",
+      "id": "NC1",
+      "observed": {
+        "k": null,
+        "p_outside": 0.0
+      },
+      "pass": true,
+      "scope": "global"
+    },
+    {
+      "check": "sigma recovered from known-sigma draws",
+      "expected_pct": 2.5,
+      "id": "NC2",
+      "observed": 2.5026,
+      "pass": true,
+      "scope": "global"
+    },
+    {
+      "check": "plausibility gate catches a +100% day",
+      "id": "NC3",
+      "observed": 1,
+      "pass": true,
+      "scope": "global"
+    },
+    {
+      "check": "band/horizon calibration invert each other",
+      "id": "V9",
+      "observed": {
+        "implied_threshold_pct": 1.9954,
+        "threshold_pct": 2.0
+      },
+      "pass": true,
+      "scope": "global"
+    }
+  ],
+  "validation_summary": {
+    "blocking_failed": 0,
+    "failed": 7,
+    "primary_source_ok": true,
+    "secondary_only_failures": 7,
+    "total": 41
+  }
+}

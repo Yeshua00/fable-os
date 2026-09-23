@@ -1,7 +1,9 @@
 {
   "schema_version": "mark-l7-kill-rules.v1",
   "owner": "MARK",
-  "generated_at": "2026-09-23T04:54:37Z",
+  "generated_at": "2026-09-23T05:54:35Z",
+  "revision": 2,
+  "revision_note": "r2 adds K8 (calibrated band required for new bets) plus the band calibration that substantiates it; the live bet's thresholds are deliberately unchanged.",
   "purpose": "L7 fix: measurable kill rules for MARK research bets, reconciliation of the win-rate claims that shipped in MARK dispatch prompts, and a checkable scored-outcome definition for the top live bet.",
   "provenance": {
     "observed_at": "2026-09-23T04:54:37Z",
@@ -45,6 +47,31 @@
       "last_20_raw_counts": "9/20",
       "prompt_claim_total_n": 28,
       "note": "The prompt's counts (6/7/15 = 28) cannot be reconstructed from any live store; treat all prompt-carried win rates as unverified until reproducible by mark_winrate.py."
+    }
+  },
+  "calibration": {
+    "why": "K5's band and horizon were chosen before any volatility was measured. bet_threshold_calibration.py now measures them, so a band that is statistically untestable can no longer be registered by accident.",
+    "artifact": "shared-scratchpad/mark-backtest/BET_THRESHOLD_CALIBRATION.json",
+    "calculator": "shared-scratchpad/mark-backtest/bet_threshold_calibration.py",
+    "reproduce": "python3 shared-scratchpad/mark-backtest/bet_threshold_calibration.py",
+    "measured_at": "2026-09-23",
+    "primary_source": "MARKET_RESEARCH*.json snapshot family, 2026-08-28..2026-09-05 (8 returns)",
+    "btc": {"sigma_daily_pct": 1.046, "sigma_2d_pct": 1.479, "band_k_sigmas": 1.352, "p_outside_2d": 0.176},
+    "verdict": "BAND_TOO_WIDE_RARELY_DECISIVE",
+    "meaning": "a 2.0% band over 2 days is only decisive 17.6% of the time on BTC; the no_edge rule would fire on ~82% of outcomes, so a 2-day momentum claim is barely testable at this band",
+    "calibrated_50pct_band_pct": 0.998,
+    "calibrated_50pct_horizon_days": 8.0,
+    "sample_caveat": "8 returns is below the n>=10 K3 bar: directional, not a forecast",
+    "applies_to": "NEW bets only - CRYPTO-MOM-20260922 keeps its mark-l7-v1 band and horizon",
+    "data_quality_finding": {
+      "what": "the thesis ledger's own check history is not usable as a price series",
+      "evidence": [
+        "ETH 2026-08-17 prints +145.66% in one day (1878.00 -> 4621.65); SOL the same day +232.29% (75.37 -> 250.45)",
+        "BTC 2026-08-28: ledger 96,000.00 vs sourced snapshot 77,639.00 (+23.65%) on the SAME date",
+        "ledger has 11 daily points spanning 2026-08-14..2026-09-22 with a 25-day hole, so it cannot price a 2-day horizon"
+      ],
+      "consequence": "do not score any outcome off the ledger's raw checks (K6 = VOID); record sourced quotes in crypto_baselines.json instead",
+      "status": "OPEN - needs the flagged prints re-verified against a source before reuse"
     }
   },
   "kill_rules": [
@@ -99,6 +126,14 @@
       "tripwire": "any thesis or paper position logged without an explicit kill rule and horizon",
       "action": "VOID at birth; the ledger row must carry kill_rule and horizon_end or it is not a bet",
       "status_now": "theses.jsonl holds 13 rows, all status=active, all outcome=None, none with a kill rule - 539 checks accumulated with zero scored outcomes; the top bet below is the first row that satisfies this rule"
+    },
+    {
+      "id": "K8",
+      "name": "no new bet on an uncalibrated band",
+      "tripwire": "a new bet registered with a band whose calibrated k < 0.75 (inside noise) or whose calibrated expected NO_EDGE frequency > 75% (too wide to be decided), or with no calibration reference at all",
+      "action": "REFUSE to register the bet; publish the calibrated band and horizon instead (see calibration block above)",
+      "unfreeze": "a bet that names its band's k, its expected NO_EDGE frequency, and its horizon passes - the point is that the numbers are stated before entry, not chosen after",
+      "status_now": "new rule from this revision; the calibration artifact exists and reproduces, so the gate is enforceable as of 2026-09-23"
     }
   ],
   "top_bet_scored_outcome": {
@@ -137,6 +172,8 @@
   },
   "honest_gaps": [
     "No outcome has actually been scored yet - this revision defines the scoring; the 13 ledger rows still read outcome=None and the top bet's first score is due at the 2026-09-24 horizon.",
+    "The calibration rests on 8 returns from one calmer window, so it is directional evidence; and it was derived from internal snapshot artifacts, not exchange data.",
+    "K8 is written and reproducible but has never yet refused a bet - its first real exercise is the next bet registered.",
     "K1 needs 3 scoring revisions before any lane can actually freeze; my lanes are WARN at 0.333 on n=3, which is too small a sample to declare decay - I am not claiming the number is precise, only that it is what the store records.",
     "The prompt-carried win rates cannot be traced to a producing window, so the reconciliation states overstatement rather than a precise correction factor."
   ],
