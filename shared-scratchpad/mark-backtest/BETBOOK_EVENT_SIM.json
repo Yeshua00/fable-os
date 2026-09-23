@@ -1,0 +1,405 @@
+{
+  "analytic": {
+    "book_headlines": {
+      "p_at_least_one_decisive_indep": 0.919263,
+      "p_at_least_one_hit_indep": 0.75,
+      "p_at_least_one_miss_indep": 0.385118,
+      "p_both_hit_indep": 0.25,
+      "p_both_miss_indep": 0.046593
+    },
+    "frechet_bounds": {
+      "both_decisive": {
+        "inter_hi": 0.714888513897,
+        "inter_indep": 0.51244790059,
+        "inter_lo": 0.431710634589,
+        "union_hi": 1.0,
+        "union_indep": 0.919262733999,
+        "union_lo": 0.716822120692
+      },
+      "both_hit": {
+        "inter_hi": 0.5,
+        "inter_indep": 0.25,
+        "inter_lo": 0.0,
+        "union_hi": 1.0,
+        "union_indep": 0.75,
+        "union_lo": 0.5
+      },
+      "both_miss": {
+        "inter_hi": 0.214888513897,
+        "inter_indep": 0.046592583296,
+        "inter_lo": 0.0,
+        "union_hi": 0.431710634589,
+        "union_indep": 0.385118051294,
+        "union_lo": 0.216822120692
+      }
+    },
+    "joint_independence": {
+      "hit": {
+        "hit": 0.25,
+        "miss": 0.107444,
+        "no_edge": 0.142556
+      },
+      "miss": {
+        "hit": 0.108411,
+        "miss": 0.046593,
+        "no_edge": 0.061818
+      },
+      "no_edge": {
+        "hit": 0.141589,
+        "miss": 0.060852,
+        "no_edge": 0.080737
+      }
+    },
+    "per_bet": {
+      "ASML-Q3-2026-REACTION-20261014": {
+        "band_pct": 9.5,
+        "hit": 0.5,
+        "horizon_end": "2026-10-14",
+        "k": 0.789573,
+        "miss": 0.214889,
+        "no_edge": 0.285111,
+        "sigma_event_pct": 12.0318157182288
+      },
+      "MU-Q4FY26-REACTION-20260930": {
+        "band_pct": 10.5,
+        "hit": 0.5,
+        "horizon_end": "2026-10-01",
+        "k": 0.782971,
+        "miss": 0.216822,
+        "no_edge": 0.283178,
+        "sigma_event_pct": 13.410461269275851
+      }
+    }
+  },
+  "artifact_policy": "ONE current simulation, regenerated in place (atomic tmp+rename). No version chain (K2).",
+  "assumptions": [
+    "independence between the two bets (point estimates); never load-bearing because Frechet-Hoeffding bounds for the same events are reported alongside",
+    "each bet's event return ~ Normal(0, sigma_event) with sigma_event taken from that artifact's own conservative K8 calibration (max of the vendor implied move read as 1 sigma vs as E|move|)",
+    "hit = 0.5 per bet is the null convention inherited from each artifact (P(non-positive)=50%); it is NOT an edge claim - the claimed edges live in each thesis file",
+    "no fat-tail overlay: Gaussian tails understate the mass of extreme earnings moves",
+    "the two horizons are distinct sessions (2026-10-01 and 2026-10-14), so no session is double-counted"
+  ],
+  "disclaimer": "Research/ops artifact for internal scorekeeping. Not financial advice.",
+  "generated_at": "2026-09-23T20:34:44Z",
+  "inputs": [
+    {
+      "band_pct": 10.5,
+      "bet_id": "MU-Q4FY26-REACTION-20260930",
+      "file": "MU_THESIS_ACTIVE.json",
+      "horizon_end": "2026-10-01",
+      "k_artifact": 0.7829708306944007,
+      "p_artifact": {
+        "hit": 0.5,
+        "miss": 0.2168221206917611,
+        "no_edge": 0.2831778793082389
+      },
+      "schema": "market-thesis-active.v1",
+      "sha256": "80c82d8fdc0e86e03a2111ad20d8b7331c9905587f854d1c84b17c4065ef5844",
+      "sigma_event_pct": 13.410461269275851
+    },
+    {
+      "band_pct": 9.5,
+      "bet_id": "ASML-Q3-2026-REACTION-20261014",
+      "file": "ASML_THESIS_ACTIVE.json",
+      "horizon_end": "2026-10-14",
+      "k_artifact": 0.7895732632945023,
+      "p_artifact": {
+        "hit": 0.5,
+        "miss": 0.21488851389725605,
+        "no_edge": 0.28511148610274395
+      },
+      "schema": "market-thesis-active.v1",
+      "sha256": "4c5ef527597d8eafa7994872df1d19074169f99ceb71e444bcf6122644758ef8",
+      "sigma_event_pct": 12.0318157182288
+    }
+  ],
+  "limitations": [
+    "n=2 bets: these are reproducible consequences of the two committed calibrations, not a measured distribution over a sample (K3 honesty - no hit rate is claimed until horizons score)",
+    "Gaussian event returns: real earnings returns are fat-tailed, so tail numbers like P(both miss) are likely understated; the Frechet bounds are the assumption-free fallback",
+    "sigma_event inputs inherit each vendor implied-move quote's convention risk (documented in each thesis artifact)",
+    "the MC leg validates arithmetic only - it carries no information beyond the analytic result (V7/V9)",
+    "cross-bet correlation in reality is not zero (shared semiconductor factor); bounds bracket it, the point estimate assumes independence",
+    "simulation is prospective: both outcomes are unscored until 2026-10-01 and 2026-10-14 with sourced quotes"
+  ],
+  "monte_carlo": {
+    "digest": "98d0602ee06e0302ee5e5ce87ac4804457f353e10f73aafb6c894a781e098bef",
+    "joint_counts": [
+      [
+        50192,
+        28671,
+        21381
+      ],
+      [
+        28218,
+        16183,
+        12072
+      ],
+      [
+        21664,
+        12409,
+        9210
+      ]
+    ],
+    "joint_prob": [
+      [
+        0.25096,
+        0.143355,
+        0.106905
+      ],
+      [
+        0.14109,
+        0.080915,
+        0.06036
+      ],
+      [
+        0.10832,
+        0.062045,
+        0.04605
+      ]
+    ],
+    "margins": [
+      {
+        "hit": 0.50122,
+        "miss": 0.216415,
+        "no_edge": 0.282365
+      },
+      {
+        "hit": 0.50037,
+        "miss": 0.213315,
+        "no_edge": 0.286315
+      }
+    ],
+    "n": 200000,
+    "seed": 20260923
+  },
+  "negative_controls": [
+    {
+      "check": "V2 catches a planted +1% band (k no longer matches the artifact)",
+      "id": "NC1",
+      "observed": {
+        "abs_dev": 0.00783,
+        "k_artifact": 0.7829708306944007,
+        "k_planted": 0.790801
+      },
+      "pass": true
+    },
+    {
+      "check": "V9 digest is seed-sensitive (seed+1 gives a different digest)",
+      "id": "NC2",
+      "observed": {
+        "digest_a": "98d0602ee06e0302",
+        "digest_b": "01d318e7d4e21a9f",
+        "seed_a": 20260923,
+        "seed_b": 20260924
+      },
+      "pass": true
+    },
+    {
+      "check": "V3 catches a planted +5% sigma_event (probabilities diverge)",
+      "id": "NC3",
+      "observed": {
+        "max_abs_dev": 0.011106285733066157
+      },
+      "pass": true
+    }
+  ],
+  "owner": "MARK",
+  "purpose": "quantify the joint event risk of the registered bet book before either horizon arrives; read-only simulation, no new market numbers, no trades, no recommendations",
+  "schema_version": "betbook-event-sim.v1",
+  "task": "TASK-00079",
+  "validation": [
+    {
+      "check": "both inputs parse as market-thesis-active.v1 with sha256 recorded",
+      "id": "V1",
+      "observed": {
+        "ASML_THESIS_ACTIVE.json": {
+          "bet_id": "ASML-Q3-2026-REACTION-20261014",
+          "schema": "market-thesis-active.v1",
+          "sha256": "4c5ef527597d8eaf"
+        },
+        "MU_THESIS_ACTIVE.json": {
+          "bet_id": "MU-Q4FY26-REACTION-20260930",
+          "schema": "market-thesis-active.v1",
+          "sha256": "80c82d8fdc0e86e0"
+        }
+      },
+      "pass": true
+    },
+    {
+      "check": "k == band/sigma_event matches the artifact's stated k (1e-9)",
+      "id": "V2",
+      "observed": {
+        "ASML-Q3-2026-REACTION-20261014": {
+          "k_artifact": 0.7895732632945023,
+          "k_recomputed": 0.7895732633
+        },
+        "MU-Q4FY26-REACTION-20260930": {
+          "k_artifact": 0.7829708306944007,
+          "k_recomputed": 0.7829708307
+        }
+      },
+      "pass": true
+    },
+    {
+      "check": "recomputed analytic p matches each artifact (1e-9)",
+      "id": "V3",
+      "observed": {
+        "ASML-Q3-2026-REACTION-20261014": {
+          "hit": {
+            "artifact": 0.5,
+            "recomputed": 0.5
+          },
+          "miss": {
+            "artifact": 0.21488851389725605,
+            "recomputed": 0.214888513897
+          },
+          "no_edge": {
+            "artifact": 0.28511148610274395,
+            "recomputed": 0.285111486103
+          }
+        },
+        "MU-Q4FY26-REACTION-20260930": {
+          "hit": {
+            "artifact": 0.5,
+            "recomputed": 0.5
+          },
+          "miss": {
+            "artifact": 0.2168221206917611,
+            "recomputed": 0.216822120692
+          },
+          "no_edge": {
+            "artifact": 0.2831778793082389,
+            "recomputed": 0.283177879308
+          }
+        }
+      },
+      "pass": true
+    },
+    {
+      "check": "per-bet hit/no_edge/miss partition sums to 1",
+      "id": "V4",
+      "observed": {
+        "ASML-Q3-2026-REACTION-20261014": 1.0,
+        "MU-Q4FY26-REACTION-20260930": 1.0
+      },
+      "pass": true
+    },
+    {
+      "check": "joint sums to 1 and marginals equal the per-bet analytics",
+      "id": "V5",
+      "observed": {
+        "cols": [
+          0.5,
+          0.285111486103,
+          0.214888513897
+        ],
+        "rows": [
+          0.5,
+          0.283177879308,
+          0.216822120692
+        ],
+        "sum": 1.0
+      },
+      "pass": true
+    },
+    {
+      "check": "every analytic joint cell == product of per-bet analytics",
+      "id": "V6",
+      "observed": {
+        "max_abs_dev": 0.0
+      },
+      "pass": true
+    },
+    {
+      "check": "MC margins and joint cells within 3.0 SE of analytic (n=200000)",
+      "id": "V7",
+      "observed": {
+        "ASML-Q3-2026-REACTION-20261014:hit": {
+          "analytic": 0.5,
+          "dev": 0.00037,
+          "mc": 0.50037,
+          "tol": 0.003354
+        },
+        "ASML-Q3-2026-REACTION-20261014:miss": {
+          "analytic": 0.214889,
+          "dev": 0.001574,
+          "mc": 0.213315,
+          "tol": 0.002755
+        },
+        "ASML-Q3-2026-REACTION-20261014:no_edge": {
+          "analytic": 0.285111,
+          "dev": 0.001204,
+          "mc": 0.286315,
+          "tol": 0.003029
+        },
+        "MU-Q4FY26-REACTION-20260930:hit": {
+          "analytic": 0.5,
+          "dev": 0.00122,
+          "mc": 0.50122,
+          "tol": 0.003354
+        },
+        "MU-Q4FY26-REACTION-20260930:miss": {
+          "analytic": 0.216822,
+          "dev": 0.000407,
+          "mc": 0.216415,
+          "tol": 0.002764
+        },
+        "MU-Q4FY26-REACTION-20260930:no_edge": {
+          "analytic": 0.283178,
+          "dev": 0.000813,
+          "mc": 0.282365,
+          "tol": 0.003022
+        },
+        "worst_joint_cell_z": 1.151
+      },
+      "pass": true
+    },
+    {
+      "check": "independence estimates lie inside the Frechet bounds",
+      "id": "V8",
+      "observed": {
+        "hit&hit": {
+          "inter_hi": 0.5,
+          "inter_indep": 0.25,
+          "inter_lo": 0.0,
+          "union_hi": 1.0,
+          "union_indep": 0.75,
+          "union_lo": 0.5
+        },
+        "miss&miss": {
+          "inter_hi": 0.214888513897,
+          "inter_indep": 0.046592583296,
+          "inter_lo": 0.0,
+          "union_hi": 0.431710634589,
+          "union_indep": 0.385118051294,
+          "union_lo": 0.216822120692
+        }
+      },
+      "pass": true
+    },
+    {
+      "check": "MC is deterministic for a fixed seed (digest matches on re-run)",
+      "id": "V9",
+      "observed": {
+        "first": "98d0602ee06e0302",
+        "second": "98d0602ee06e0302"
+      },
+      "pass": true
+    },
+    {
+      "check": "both horizons are after the run date (sim is prospective, unscored)",
+      "id": "V10",
+      "observed": {
+        "ASML-Q3-2026-REACTION-20261014": "2026-10-14",
+        "MU-Q4FY26-REACTION-20260930": "2026-10-01"
+      },
+      "pass": true
+    }
+  ],
+  "validation_summary": {
+    "failed": 0,
+    "nc_failed": 0,
+    "negative_controls": 3,
+    "total": 10
+  }
+}
