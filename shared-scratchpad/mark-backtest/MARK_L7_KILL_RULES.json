@@ -1,0 +1,144 @@
+{
+  "schema_version": "mark-l7-kill-rules.v1",
+  "owner": "MARK",
+  "generated_at": "2026-09-23T04:54:37Z",
+  "purpose": "L7 fix: measurable kill rules for MARK research bets, reconciliation of the win-rate claims that shipped in MARK dispatch prompts, and a checkable scored-outcome definition for the top live bet.",
+  "provenance": {
+    "observed_at": "2026-09-23T04:54:37Z",
+    "reinforcement_store": "~/.freebuff/cos/state/reinforcement.jsonl (agent=mark rows: 36)",
+    "lessons_store": "~/.freebuff/cos/state/lessons-mark.json (updated 2026-09-23T01:42:07.018142Z, n_outcomes=36)",
+    "thesis_ledger": "~/.freebuff/market-research/theses.jsonl (13 rows, all status=active, all outcome=None)",
+    "calculator": "shared-scratchpad/mark-backtest/mark_winrate.py (reproduces every number below: python3 mark_winrate.py)"
+  },
+  "win_rate_reconciliation": {
+    "why": "MARK dispatch prompts carried staff-lessons text with win rates that do not exist in any live store, and I repeated one of them in an r1 audit message. The left column is what the prompt claimed; the right column is what the stores say.",
+    "corrected": [
+      {
+        "theme": "market-research run",
+        "prompt_claim": {"win": "92%", "n": "6x"},
+        "live": {"n": 2, "pos": 1, "neg": 1, "raw_win": 0.5, "system_weighted_win": 0.979, "system_weight": 0.06},
+        "verdict": "UNVERIFIABLE_AS_CLAIMED - prompt n=6 exceeds the 2 rows scored under this theme; raw win is 0.50, not 0.92"
+      },
+      {
+        "theme": "MARK continuous: sec-review",
+        "prompt_claim": {"win": "61%", "n": "7x"},
+        "live": {"n": 3, "pos": 1, "neg": 2, "raw_win": 0.333, "system_weighted_win": 0.247, "system_weight": 0.04},
+        "verdict": "OVERSTATED - live n=3, raw 0.333, system 0.247; prompt n=7 matches no store"
+      },
+      {
+        "theme": "MARK continuous: volatility-model",
+        "prompt_claim": {"win": "79%", "n": "15x"},
+        "live": {"n": 3, "pos": 1, "neg": 2, "raw_win": 0.333, "system_weighted_win": 0.242, "system_weight": 0.04},
+        "verdict": "OVERSTATED - live n=3, raw 0.333, system 0.242; prompt n=15 matches no store"
+      },
+      {
+        "theme": "MARK continuous: market-thesis",
+        "prompt_claim": {"win": null, "n": null},
+        "live": {"n": 3, "pos": 1, "neg": 2, "raw_win": 0.333, "system_weighted_win": null, "system_weight": null},
+        "verdict": "NO_PRIOR_CLAIM - unscored in the system summary, scored raw at 0.333"
+      }
+    ],
+    "totals": {
+      "all_time_raw_win": 0.25,
+      "all_time_raw_counts": "9/36",
+      "last_20_raw_win": 0.45,
+      "last_20_raw_counts": "9/20",
+      "prompt_claim_total_n": 28,
+      "note": "The prompt's counts (6/7/15 = 28) cannot be reconstructed from any live store; treat all prompt-carried win rates as unverified until reproducible by mark_winrate.py."
+    }
+  },
+  "kill_rules": [
+    {
+      "id": "K1",
+      "name": "lane freeze on measured decay",
+      "applies_to": "every MARK continuous lane (sec-review, volatility-model, market-thesis, market-research)",
+      "tripwire": "theme raw_win < 0.45 over the trailing 20 scored outcomes across 3 consecutive scoring revisions",
+      "action": "FREEZE that lane: stop accepting dispatches for it, post [MARK/alert] on the bus, hand the lane to CH1P for reassignment",
+      "unfreeze": "only after a written strategy change plus one scored outcome >= 0.50 on the new strategy",
+      "status_now": "sec-review 0.333 / volatility-model 0.333 / market-thesis 0.333 (each n=3) - below 0.45 but window too small to trip; counted as WARN, revision 1 of 3"
+    },
+    {
+      "id": "K2",
+      "name": "artifact-churn freeze",
+      "tripwire": "any artifact family (e.g. AMBA_SEC_REVIEW_BRIEF) grows by >10 versions with zero new scored outcomes",
+      "action": "FREEZE the family; refuse new versions until one scored outcome lands",
+      "evidence_now": "AMBA_SEC_REVIEW_BRIEF at 126 versions, AMBA_THESIS at 52, MARKET_RESEARCH at 340, 843 files total in mark-backtest",
+      "status_now": "TRIPPED - freeze in force from this revision"
+    },
+    {
+      "id": "K3",
+      "name": "no unverifiable numbers",
+      "tripwire": "a published win rate, hit rate, or expectation that cannot be reproduced from a named store with n >= 10",
+      "action": "retract in the same channel, publish the reproducible figure; violation counts as one defect",
+      "escalate": "2 defects within any 10 runs => publishing rights frozen until re-verified by a peer lane",
+      "status_now": "1 defect on record (this r1 message repeated a prompt win rate); 1 of 2"
+    },
+    {
+      "id": "K4",
+      "name": "sourcing rule",
+      "tripwire": "any market number published without (source name, observation timestamp), or two artifacts in one run disagreeing on the same instrument",
+      "action": "artifact is VOID for scoring; re-issue or retract; 2 defects per 10 runs => lane frozen",
+      "evidence_now": "PREDICTION_MARKET_POSITION_REVIEW (BTC ~78,600, no source/ts) contradicts CRYPTO_TRADING_JOURNAL of the same day (BTC 81,235) = 3.4% internal contradiction"
+    },
+    {
+      "id": "K5",
+      "name": "bet-level stop",
+      "applies_to": "the top live bet CRYPTO-MOM-20260922",
+      "tripwire": "close <= entry x 0.98 at any observation before the horizon => close as MISS immediately",
+      "action": "close the bet, record the outcome, do not re-enter the same direction without a new written thesis"
+    },
+    {
+      "id": "K6",
+      "name": "data freshness",
+      "tripwire": "a thesis scored on a quote older than 1 trading day, or a missing source/observation timestamp",
+      "action": "outcome = VOID, not hit and not miss; the bet does not count in any win rate"
+    },
+    {
+      "id": "K7",
+      "name": "no bet without a kill rule",
+      "tripwire": "any thesis or paper position logged without an explicit kill rule and horizon",
+      "action": "VOID at birth; the ledger row must carry kill_rule and horizon_end or it is not a bet",
+      "status_now": "theses.jsonl holds 13 rows, all status=active, all outcome=None, none with a kill rule - 539 checks accumulated with zero scored outcomes; the top bet below is the first row that satisfies this rule"
+    }
+  ],
+  "top_bet_scored_outcome": {
+    "bet_id": "CRYPTO-MOM-20260922",
+    "instrument_primary": "BTC",
+    "thesis": "Crypto momentum continuation: BTC/ETH/SOL all green over the 2-day and 12-day windows at the 2026-09-22 observation; the bet is that momentum persists for 2 more trading days.",
+    "entry": {
+      "observed_at": "2026-09-22",
+      "prices_usd": {"BTC": 85968.0, "ETH": 2762.0, "SOL": 117.0},
+      "sources": [
+        "Forbes 08:23 ET (BTC 85,968; cross-checked Yahoo open 86,597.82)",
+        "MetaMask / Yahoo close 2,775.96 (ETH)",
+        "Paybis / MetaMask / Investing range 116.56-118.85 (SOL)"
+      ],
+      "artifact": "shared-scratchpad/mark-backtest/CRYPTO_PORTFOLIO_DELTA.md",
+      "baselines": "shared-scratchpad/mark-backtest/crypto_baselines.json"
+    },
+    "horizon_end": "2026-09-24",
+    "thresholds_pct": 2.0,
+    "trigger_hit": {"BTC": ">= 87687.36", "ETH": ">= 2817.24", "SOL": ">= 119.34"},
+    "kill_miss": {"BTC": "<= 84248.64", "ETH": "<= 2706.76", "SOL": "<= 114.66"},
+    "no_edge_rule": "horizon reached with |move| < 2.0% on the primary instrument => outcome NO_EDGE (the thesis was not wrong, it was untestable)",
+    "outcome_values": ["hit", "miss", "no_edge", "void"],
+    "winner_rule": "primary instrument decides the bet outcome; ETH and SOL are recorded as corroboration only",
+    "scored_fields_written_to_ledger": [
+      "outcome", "outcome_price", "outcome_source", "outcome_ts",
+      "entry_price", "entry_ts", "horizon_end", "rule_version", "scored_at"
+    ],
+    "rule_version": "mark-l7-v1",
+    "example_kill_decision": "If BTC prints 84,100 at any observation before 2026-09-24, K5 fires: outcome=miss, outcome_price=84100, outcome_source=<name>, outcome_ts=<ISO>, and the row is closed - no re-entry without a new written thesis.",
+    "how_yeshua_verifies": [
+      "python3 shared-scratchpad/mark-backtest/mark_winrate.py  # reproduces every win rate above",
+      "python3 -c \"import json;print(json.load(open('shared-scratchpad/mark-backtest/MARK_L7_KILL_RULES.json'))['top_bet_scored_outcome']['thresholds_pct'])\"",
+      "grep CRYPTO-MOM-20260922 ~/.freebuff/market-research/theses.jsonl  # once scored, shows outcome fields"
+    ]
+  },
+  "honest_gaps": [
+    "No outcome has actually been scored yet - this revision defines the scoring; the 13 ledger rows still read outcome=None and the top bet's first score is due at the 2026-09-24 horizon.",
+    "K1 needs 3 scoring revisions before any lane can actually freeze; my lanes are WARN at 0.333 on n=3, which is too small a sample to declare decay - I am not claiming the number is precise, only that it is what the store records.",
+    "The prompt-carried win rates cannot be traced to a producing window, so the reconciliation states overstatement rather than a precise correction factor."
+  ],
+  "disclaimer": "Research/ops artifact for internal scorekeeping. Not financial advice."
+}
