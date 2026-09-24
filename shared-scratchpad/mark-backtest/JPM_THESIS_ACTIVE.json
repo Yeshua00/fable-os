@@ -1,0 +1,583 @@
+{
+  "artifact_policy": "ONE current thesis per subject, regenerated in place (atomic tmp+rename). No version chain, so the family cannot churn under K2.",
+  "bet": {
+    "band_pct": 5.64,
+    "bet_id": "JPM-Q3-2026-REACTION-20261013",
+    "horizon_end": "2026-10-13",
+    "kill_miss": "change >= +5.64%",
+    "ledger_path": "/Users/joshuahagen/.freebuff/market-research/theses.jsonl",
+    "ledger_row_id": "thesis_jpm_q3_2026_reaction",
+    "no_edge_rule": "0.0% < change < +5.64% => not_confirmed",
+    "outcome_values": [
+      "hit",
+      "not_confirmed",
+      "miss",
+      "void"
+    ],
+    "reference_rule": "reference = sourced JPM close 2026-10-12 (K6: fresh, timestamped)",
+    "registration": {
+      "created": false,
+      "jpm_row": "JPM-Q3-2026-REACTION-20261013",
+      "others_digest_after": "e2b7f6114c146fc463a7cf701a828a18dd139913ec8a58e04b62d284dca7e686",
+      "others_digest_before": "e2b7f6114c146fc463a7cf701a828a18dd139913ec8a58e04b62d284dca7e686",
+      "row_count": 18
+    },
+    "rule_version": "mark-l7-v2+k8",
+    "trigger_hit": "change <= 0.0%"
+  },
+  "calibration": {
+    "band_k_sigmas": 0.7978845608028654,
+    "band_pct": 5.64,
+    "event_vs_daily_ratio": 0.061953204238538805,
+    "expected_p_hit": 0.5,
+    "expected_p_miss": 0.21246874184168096,
+    "expected_p_no_edge": 0.28753125815831904,
+    "k8_floor_k": 0.75,
+    "k8_max_no_edge": 0.75,
+    "note": "JPM's event sigma (~7.07%) is ~6.2x its realised daily sigma - an earnings bet must be banded against the event quote, not the daily sigma; the daily sigmas are context only",
+    "realised_daily": {
+      "annualised_pct": 18.112380775608333,
+      "mad_pct": 1.0084162716049094,
+      "stdev_pct": 1.1409727424658769
+    },
+    "realised_source": "stockanalysis.com/stocks/jpm/history -- S&P Global Market Intelligence, Close column, page 'Last checked: Sep 23, 2026' (read after the 16:00 EDT close, final prints; raw Close == Adj. Close on every row - JPM pays a quarterly dividend but the columns agree in this window as printed)",
+    "sigma_event_basis": "max(implied as 1 sigma, implied as E|move|) - the conservative leg",
+    "sigma_event_pct": 7.068691734459421,
+    "sigma_legs": {
+      "implied_move_pct": 5.64,
+      "implied_read_as_1sigma_pct": 5.64,
+      "implied_read_as_expected_abs_move_pct": 7.068691734459421,
+      "implied_source": "optionslam.com/earnings/straddle/JPM: 'Implied Move Weekly: 5.64% Expires on: Oct. 16, 2026', observed 2026-09-24 - the weekly window (to Oct 16) is the nearest-dated quote covering the 2026-10-13 print; using it unchanged is the conservative direction (window longer than the event)"
+    }
+  },
+  "calibration_provenance": {
+    "artifact": "JPM_BAND_CALIBRATION.json",
+    "owner": "jpm_band_calibration.py (TASK-00116) - imported, not re-implemented"
+  },
+  "catalyst": {
+    "date": "2026-10-13",
+    "date_status": "COMPANY-CONFIRMED - strongest provenance of the registered book",
+    "event": "JPMorgan Chase Q3 2026 financial results, before the US market open",
+    "implied_event_move": {
+      "cross_check": {
+        "pct": 3.4,
+        "source": "marketchameleon.com/Overview/JPM/Earnings: last print (2026-07-14 BMO) 'options predicted a +/-3.4% move vs +2.5% actual', observed 2026-09-24"
+      },
+      "history": {
+        "exceeded_implied_16q": "9/16 (56%)",
+        "history_source": "earnings-watcher.com/wiki/jpm-implied-move: 'actual earnings move exceeded the options-implied move in 9 of its last 16 reports (56%)', page updated 2026-09-02"
+      },
+      "pct": 5.64,
+      "source": "optionslam.com/earnings/straddle/JPM: 'Implied Move Weekly: 5.64% Expires on: Oct. 16, 2026', observed 2026-09-24 - the weekly window (to Oct 16) is the nearest-dated quote covering the 2026-10-13 print; using it unchanged is the conservative direction (window longer than the event)",
+      "vol_reference": {
+        "iv_pct": 24.7,
+        "ivile_pct": 57,
+        "note": "vendor HISTORICAL vol was not obtainable this run (barchart pages returned definitions only); the vendor IV is used as the V4 reference leg and the substitution is recorded here and in limitations (K4 - absence recorded, not guessed)",
+        "source": "marketchameleon.com/Overview/JPM/IV: 'JPM implied volatility (IV) is 24.7, which is in the 57% percentile rank', observed 2026-09-24"
+      }
+    },
+    "momentum_into_print": {
+      "detail": "-4.12% over two sessions (Sep 22 -3.42%, Sep 23 -0.73%) on 'AI-scare trade hitting banks' + flattening-yield-curve headlines",
+      "source": "stockanalysis.com series rows + Market Watch (5h ago) and Reuters (1 day ago) headlines in the page's news rail, observed 2026-09-24"
+    },
+    "observed_on": "2026-09-24",
+    "release_timing_evidence": {
+      "assumed": "results pre-open 2026-10-13 (8:30 a.m. ET call), so the full US reaction session is 2026-10-13 itself - same convention as the UNH pre-open bet",
+      "shift_rule": "if JPM releases after the US close (not expected - company states an 8:30 a.m. ET call), scoring shifts to the next session and the row records the actual timestamp (K4)",
+      "source": "jpmorganchase.com IR press release, observed 2026-09-24"
+    },
+    "session_collision": {
+      "detail": "UNH also prints pre-open on 2026-10-13 (registered bet UNH-Q3-2026-REACTION-20261013) - a double-bill session; recorded as risk #7",
+      "source": "UNH_THESIS_ACTIVE.json catalyst block, observed 2026-09-23"
+    },
+    "source_confirmed": [
+      "jpmorganchase.com/ir/news/2026/jpmc-to-host-third-quarter-2026-earnings-call: 'conference call to review third-quarter 2026 financial results ... Tuesday, October 13, 2026 at 8:30 a.m. (ET)' (observed 2026-09-24)",
+      "jpmorganchase.com/ir/events: 'JPMorganChase Third-Quarter 2026 Earnings Conference Call Oct 13, 2026' (observed 2026-09-24)",
+      "jpmorganchase.com advance schedule (2025-05-21): 'Third-quarter 2026 - Tuesday, October 13, 2026 at 8:30 a.m. (Eastern)' (observed 2026-09-24)",
+      "wallstreethorizon.com/jpmorgan-earnings-calendar: 'CONFIRMED for Tuesday 10/13/2026 Before Market' (observed 2026-09-24)"
+    ]
+  },
+  "disclaimer": "Research/ops artifact for internal scorekeeping. Not financial advice.",
+  "entry": {
+    "after_hours": {
+      "price": 337.9,
+      "source": "stockanalysis.com header: 'After-hours: Sep 23, 2026, 7:59 PM EDT' 337.90 (+0.11%)"
+    },
+    "market_cap": {
+      "note": "market cap NOT sourced this run - omitted rather than estimated (K4)"
+    },
+    "observed_on": "2026-09-23",
+    "price": 337.53,
+    "prior_close": {
+      "observed_on": "2026-09-22",
+      "price": 340.0,
+      "sources": [
+        "stockanalysis.com JPM history table row 'Sep 22, 2026': Close 340.00, Change -3.42%"
+      ]
+    },
+    "range_52w": {
+      "note": "52-week range NOT sourced this run - omitted rather than estimated (K4)"
+    },
+    "sources": [
+      "stockanalysis.com JPM history table row 'Sep 23, 2026': Close 337.53 = Adj. Close 337.53, Change -0.73%, page read after the close",
+      "internal consistency: 337.53 / 340.00 - 1 = -0.73% matches the table's stated Change for that row"
+    ]
+  },
+  "explicit_risks": [
+    {
+      "direction": "upside_against_thesis",
+      "evidence": "marketchameleon JPM earnings charts + earnings-watcher.com/wiki/jpm-implied-move (updated 2026-09-02), observed 2026-09-24",
+      "risk": "Upside precedent is the book's strongest counter-case: the LAST print moved +2.5% UP (2026-07-14) and JPM's actual move has EXCEEDED the options-implied move in 9 of its last 16 prints (56%) - options have NOT reliably capped this event"
+    },
+    {
+      "direction": "upside_against_thesis",
+      "evidence": "sourced series Sep 22/23 rows + Market Watch/Reuters headlines, observed 2026-09-24",
+      "risk": "Relief-rally risk: the -4.12% two-day drop (AI-scare/curve headlines) could snap back ON the print as the catalyst resets the tape - the entry is two strong down sessions off the high"
+    },
+    {
+      "direction": "upside_against_thesis",
+      "evidence": "standing bank-earnings dynamic; no single dated source claimed (recorded as structural risk, K4)",
+      "risk": "NII/guidance beat: the standard bank bull case into a Fed-cut cycle is a forward-NII guidance raise - a raise is a same-day up-spike regardless of the quarter's backward numbers"
+    },
+    {
+      "direction": "upside_against_thesis",
+      "evidence": "stockanalysis.com JPM news rail, observed 2026-09-24",
+      "risk": "Positive deal-flow headlines into the print: the $20B Qatar Investment Authority partnership (Sep 22, Reuters/WSJ/PRNewswire) and the card-business/private-credit expansion talks (WSJ/PYMNTS, Sep 22-23) frame management as a dealmaker, not a defender"
+    },
+    {
+      "direction": "upside_against_thesis",
+      "evidence": "structural (JPM always reports the big-bank week first); no single dated source claimed",
+      "risk": "Seasonality: JPM kicks off bank earnings season as the first mover - first-mover prints historically carry a sympathy bid from the sector complex"
+    },
+    {
+      "direction": "classification_risk",
+      "evidence": "calibration in JPM_BAND_CALIBRATION.json (TASK-00116)",
+      "risk": "Classification: the 5.64% band vs a 1.14% realised daily sigma means decisive outcomes require a >5.64% move - the bet is no_edge-heavy by construction (p_no_edge 0.2875 under the Gaussian model, higher empirically for a large-cap bank)"
+    },
+    {
+      "direction": "scoring_risk",
+      "evidence": "UNH_THESIS_ACTIVE.json catalyst (observed 2026-09-23); no JPM-specific source needed for a calendar fact",
+      "risk": "Session collision: UNH prints pre-open the SAME day (2026-10-13) - a double-bill session with possible macro prints that week muddies attribution of JPM's own reaction"
+    },
+    {
+      "direction": "classification_risk",
+      "evidence": "optionslam JPM straddle page, observed 2026-09-24; recorded in JPM_BAND_CALIBRATION.json limitations",
+      "risk": "Window mismatch: the 5.64% optionslam quote spans to Oct 16 (3 days past the print) - sigma_event is slightly overstated, so the band is conservative for K8 but the model's decisiveness is overstated in the other direction"
+    }
+  ],
+  "filings": [
+    {
+      "accession": "0001628280-26-054343",
+      "filed": "2026-08-06",
+      "form": "10-Q",
+      "observed_on": "2026-09-24",
+      "period": "Q2 2026 (quarter ended 2026-06-30)",
+      "source": "data.sec.gov/submissions/CIK0000019617.json, observed 2026-09-24"
+    },
+    {
+      "accession": "0001628280-26-048078",
+      "form": "8-K (Q2 2026 results)",
+      "highlights": [
+        "the +2.5%-actual print whose fade is precedent edge leg (1)"
+      ],
+      "observed_on": "2026-09-24",
+      "period": "announced 2026-07-14 (BMO)",
+      "source": "data.sec.gov submissions + marketchameleon earnings history (2026-07-14 BMO), observed 2026-09-24"
+    },
+    {
+      "accession": "0001193125-26-314128",
+      "form": "8-K",
+      "observed_on": "2026-09-24",
+      "period": "filed 2026-07-23",
+      "source": "data.sec.gov submissions, observed 2026-09-24"
+    },
+    {
+      "form": "EDGAR standing record",
+      "highlights": [
+        "CIK 0000019617, JPMORGAN CHASE & CO"
+      ],
+      "observed_on": "2026-09-24",
+      "period": "entity metadata",
+      "source": "data.sec.gov submissions, observed 2026-09-24"
+    }
+  ],
+  "generated_at": "2026-09-24T01:03:20Z",
+  "limitations": [
+    "The edge is a judgement under a 50% null (confidence 52): the last print moved +2.5% UP and actual exceeded implied 9/16 (56%) - the counter-case is stronger than for any other registered bet.",
+    "The 5.64% implied-move quote spans to Oct 16 (3 days past the print); sigma_event is conservatively overstated for K8 but the model's decisiveness is correspondingly overstated.",
+    "Vendor HISTORICAL vol was not sourced; V4 of the calibration module uses marketchameleon IV 24.7 as the reference leg (recorded, K4).",
+    "No Q3 consensus EPS/NII numbers were sourced; the comparison facts are structural (fade precedent, momentum, double-bill session) rather than beat/miss framing (K4).",
+    "52-week range and market cap not sourced this run - omitted rather than estimated (K4).",
+    "The Q2 pre-print close (~342.86) is derived from the Jul 15 row's stated +1.17% change, not read directly from a Jul 14 row (outside the series window) - recorded as derived, not sourced.",
+    "The betbook_event_sim.py INPUTS names MU/UNH/ASML/TSLA - this fifth bet is NOT yet in the joint simulation; extending it is separate work, not silently done here.",
+    "The reference close (2026-10-12) does not exist yet; scoring requires a sourced quote on or after 2026-10-13."
+  ],
+  "owner": "MARK",
+  "price_series": {
+    "integrity": "V12 stated-change check passes (max dev <=0.01pp)",
+    "points": 50,
+    "rows": [
+      [
+        "2026-07-15",
+        346.91
+      ],
+      [
+        "2026-07-16",
+        343.15
+      ],
+      [
+        "2026-07-17",
+        341.1
+      ],
+      [
+        "2026-07-20",
+        338.87
+      ],
+      [
+        "2026-07-21",
+        345.23
+      ],
+      [
+        "2026-07-22",
+        348.21
+      ],
+      [
+        "2026-07-23",
+        349.9
+      ],
+      [
+        "2026-07-24",
+        353.21
+      ],
+      [
+        "2026-07-27",
+        356.2
+      ],
+      [
+        "2026-07-28",
+        357.31
+      ],
+      [
+        "2026-07-29",
+        344.71
+      ],
+      [
+        "2026-07-30",
+        350.85
+      ],
+      [
+        "2026-07-31",
+        351.79
+      ],
+      [
+        "2026-08-03",
+        352.64
+      ],
+      [
+        "2026-08-04",
+        357.52
+      ],
+      [
+        "2026-08-05",
+        359.24
+      ],
+      [
+        "2026-08-06",
+        356.3
+      ],
+      [
+        "2026-08-07",
+        357.52
+      ],
+      [
+        "2026-08-10",
+        359.79
+      ],
+      [
+        "2026-08-11",
+        362.04
+      ],
+      [
+        "2026-08-12",
+        365.18
+      ],
+      [
+        "2026-08-13",
+        363.11
+      ],
+      [
+        "2026-08-14",
+        362.84
+      ],
+      [
+        "2026-08-17",
+        360.96
+      ],
+      [
+        "2026-08-18",
+        363.25
+      ],
+      [
+        "2026-08-19",
+        357.26
+      ],
+      [
+        "2026-08-20",
+        351.55
+      ],
+      [
+        "2026-08-21",
+        351.58
+      ],
+      [
+        "2026-08-24",
+        356.39
+      ],
+      [
+        "2026-08-25",
+        356.69
+      ],
+      [
+        "2026-08-26",
+        356.5
+      ],
+      [
+        "2026-08-27",
+        354.22
+      ],
+      [
+        "2026-08-28",
+        357.62
+      ],
+      [
+        "2026-08-31",
+        356.02
+      ],
+      [
+        "2026-09-01",
+        354.95
+      ],
+      [
+        "2026-09-02",
+        356.22
+      ],
+      [
+        "2026-09-03",
+        362.06
+      ],
+      [
+        "2026-09-04",
+        358.64
+      ],
+      [
+        "2026-09-08",
+        353.51
+      ],
+      [
+        "2026-09-09",
+        354.71
+      ],
+      [
+        "2026-09-10",
+        353.56
+      ],
+      [
+        "2026-09-11",
+        356.23
+      ],
+      [
+        "2026-09-14",
+        350.13
+      ],
+      [
+        "2026-09-15",
+        352.49
+      ],
+      [
+        "2026-09-16",
+        348.92
+      ],
+      [
+        "2026-09-17",
+        349.31
+      ],
+      [
+        "2026-09-18",
+        349.67
+      ],
+      [
+        "2026-09-21",
+        352.04
+      ],
+      [
+        "2026-09-22",
+        340.0
+      ],
+      [
+        "2026-09-23",
+        337.53
+      ]
+    ],
+    "source": "stockanalysis.com/stocks/jpm/history -- S&P Global Market Intelligence, Close column, page 'Last checked: Sep 23, 2026' (read after the 16:00 EDT close, final prints; raw Close == Adj. Close on every row - JPM pays a quarterly dividend but the columns agree in this window as printed)",
+    "span": "2026-07-15..2026-09-23"
+  },
+  "price_source_policy": {
+    "not_used": "theses.jsonl check history - substantiated unusable as a price series on 2026-09-23 (BET_THRESHOLD_CALIBRATION.json data_quality_findings)",
+    "used": "stockanalysis.com/stocks/jpm/history -- S&P Global Market Intelligence, Close column, page 'Last checked: Sep 23, 2026' (read after the 16:00 EDT close, final prints; raw Close == Adj. Close on every row - JPM pays a quarterly dividend but the columns agree in this window as printed)"
+  },
+  "schema_version": "market-thesis-active.v1",
+  "subject_selection": {
+    "k2_note": "AMBA remains frozen; this thesis is a registered bet, not a new brief version.",
+    "why_jpm": "0 prior artifacts (fresh family - AMBA K2-frozen; MU/ASML/UNH/TSLA each carry exactly one thesis and a second file would start a version chain). FINANCIALS: the one major sector the book does not cover (semis MU/ASML, healthcare UNH, EV TSLA), so the joint simulation gains an uncorrelated leg. Company-confirmed catalyst date - the strongest provenance of any registered bet (3 company sources + wallstreethorizon)."
+  },
+  "task": "TASK-00115",
+  "thesis": {
+    "claimed_edge": "(1) sell-the-print-then-fade precedent: the Q2 print (2026-07-14 BMO, +2.5% actual) opened +1.17% on Jul 15 and then four declining sessions carried the tape to 338.87 by Jul 20 - about -1.16% BELOW the pre-print close of ~342.86: the pop round-tripped entirely in four sessions; (2) momentum into the print is negative: -4.12% over Sep 22-23 on AI-scare/flat-curve bank headlines, and BMO prints hand the session to the reaction with no overnight buffer; (3) the double-bill session (UNH same morning) splits attention across two large-cap reactions. The edge is a judgement under a 50% null - risks 1-5 (especially the +2.5% up last print and the 56% exceeded-implied history) are the honest counter-case and are why confidence stays at 52.",
+    "falsifiable_prediction": "JPM's close on 2026-10-13 (the full US session reacting to the company-confirmed pre-open Q3 print) is not above its 2026-10-12 close.",
+    "invalidation": "an upside breach of +5.64% on 2026-10-13 falsifies the read decisively; no re-entry in either direction without a new written thesis",
+    "null_hypothesis": "a coin flip: P(non-positive reaction) = 50%",
+    "one_line": "JPM opens earnings season pre-open with a twice-faded setup: the last print popped then round-tripped in four sessions, and the tape arrives -4.12% in two days on bank-specific headline pressure.",
+    "subject": "JPM",
+    "what_would_confirm": "a non-positive 2026-10-13 close (change <= 0.0% vs 2026-10-12)",
+    "what_would_falsify": "a positive 2026-10-13 close (change > 0.0%), decisive-falsifier at >= +5.64%"
+  },
+  "validation": [
+    {
+      "check": "series >=30 points, strictly ascending, no duplicate dates",
+      "id": "V1",
+      "observed": {
+        "ascending": true,
+        "n": 50,
+        "span": "2026-07-15..2026-09-23",
+        "unique": true
+      },
+      "pass": true
+    },
+    {
+      "check": "series last close == cited entry price",
+      "id": "V2",
+      "observed": {
+        "entry": 337.53,
+        "series": 337.53
+      },
+      "pass": true
+    },
+    {
+      "check": "calibration imported from the calibration module matches K8",
+      "id": "V3",
+      "observed": {
+        "band": 5.64,
+        "floor": 0.75,
+        "k": 0.7979,
+        "sigma_event": 7.0687
+      },
+      "pass": true
+    },
+    {
+      "check": "K8 gate: expected no_edge <= 75%",
+      "id": "V4",
+      "observed": {
+        "expected_no_edge": 0.2875
+      },
+      "pass": true
+    },
+    {
+      "check": "hit/no_edge/miss partition sums to 1",
+      "id": "V5",
+      "observed": {
+        "sum": 1.0
+      },
+      "pass": true
+    },
+    {
+      "check": "K6: entry quote within 1 trading day of the run",
+      "id": "V6",
+      "observed": {
+        "entry_observed_on": "2026-09-23",
+        "run_on": "2026-09-24",
+        "trading_days_old": 0.69
+      },
+      "pass": true
+    },
+    {
+      "check": "K7: bet carries kill_rule, horizon_end, hit and kill thresholds",
+      "id": "V7",
+      "observed": {
+        "hit": "<= 0.0% change",
+        "horizon_end": "2026-10-13",
+        "kill": ">= +5.64%",
+        "kill_rule": "upside breach >= +5.64% on 2026-10-13",
+        "reference": "2026-10-12"
+      },
+      "pass": true
+    },
+    {
+      "check": "catalyst date is company-confirmed with >=2 independent sources",
+      "id": "V8",
+      "observed": {
+        "date": "2026-10-13",
+        "sources": 4,
+        "status": "COMPANY-CONFIRMED - "
+      },
+      "pass": true
+    },
+    {
+      "check": "series integrity vs vendor stated Change (V12 of the calibration module) still holds on import",
+      "id": "V9",
+      "observed": {
+        "max_dev_pp": 0.0049,
+        "rows_checked": 49,
+        "rows_over_tol": 0
+      },
+      "pass": true
+    },
+    {
+      "check": "pricing source is fresh quotes, not the corrupt ledger series",
+      "id": "V10",
+      "observed": {
+        "ledger_status": "unusable as a price series (2026-09-23 finding)",
+        "priced_from": "stockanalysis.com/stocks/jpm/history"
+      },
+      "pass": true
+    },
+    {
+      "check": "K8 gate rejects a 3.0% band (k < 0.75)",
+      "id": "NC1",
+      "observed": {
+        "band_pct": 3.0,
+        "k": 0.4244
+      },
+      "pass": true
+    },
+    {
+      "check": "K6 gate rejects a quote 3 trading days old",
+      "id": "NC2",
+      "observed": {
+        "trading_days_old": 4.14
+      },
+      "pass": true
+    },
+    {
+      "check": "V8 fails if the date status is downgraded to UNCONFIRMED",
+      "id": "NC3",
+      "observed": {
+        "simulated_status": "UNCONFIRMED",
+        "v8_passes_on_simulated": false
+      },
+      "pass": true
+    },
+    {
+      "check": "calibration is deterministic across recomputation",
+      "id": "NC4",
+      "observed": {
+        "k_first": 0.797884560803,
+        "k_second": 0.797884560803
+      },
+      "pass": true
+    }
+  ],
+  "validation_summary": {
+    "failed": 0,
+    "total": 14
+  }
+}
