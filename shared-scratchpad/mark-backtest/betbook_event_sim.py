@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """betbook_event_sim.py — reproducible event simulation over the registered bet book.
 
-TASK-00129 (volatility-model). Extends the earlier simulation to ALL SIX
+TASK-00140 (volatility-model). Extends the earlier simulation to ALL SEVEN
 registered, K8-calibrated thesis bets: MU (horizon 2026-10-01), UNH
-(2026-10-13), ASML (2026-10-14), TSLA (2026-10-22), JPM (2026-10-13) and
-XOM (2026-10-30). The book's aggregate event risk is quantified before any
-horizon arrives. This closes the gap BOTH the JPM (TASK-00115) and XOM
-(TASK-00125) artifacts recorded in their own limitations (the sim's INPUTS
-named only four bets). Regenerated in place - same family, no version
-chain, so K2 does not bind.
+(2026-10-13), ASML (2026-10-14), TSLA (2026-10-22), JPM (2026-10-13),
+XOM (2026-10-30) and KO (2026-10-20). The book's aggregate event risk is
+quantified before any horizon arrives. This closes the gap the KO
+(TASK-00137) artifact recorded in its own limitations (the sim's INPUTS
+named only six bets; the JPM/XOM gaps were closed earlier). Regenerated
+in place - same family, no version chain, so K2 does not bind.
 
 Deliberately adds NO new market numbers: every input is read at run time from
-the six committed thesis artifacts, each of which already passed its own K8
+the seven committed thesis artifacts, each of which already passed its own K8
 band gate and carries sourced, timestamped quotes (K4/K6 inherited, not
 re-quoted).
 
@@ -51,15 +51,16 @@ INPUTS = [DIR / "MU_THESIS_ACTIVE.json",
           DIR / "ASML_THESIS_ACTIVE.json",
           DIR / "TSLA_THESIS_ACTIVE.json",
           DIR / "JPM_THESIS_ACTIVE.json",
-          DIR / "XOM_THESIS_ACTIVE.json"]
+          DIR / "XOM_THESIS_ACTIVE.json",
+          DIR / "KO_THESIS_ACTIVE.json"]
 RUN_ON = "2026-09-24"
 SEED = 20260924
 N_DRAWS = 200_000
 MC_Z = 3.0            # margin tolerance: |empirical - analytic| <= 3 * standard errors
-MC_Z_JOINT = 4.5      # joint-cell tolerance: family-wise bound over the ~729
-                      # simultaneous cell tests (at 3 SE, per-cell gates fail by
-                      # chance alone far too often once N-way cells number in
-                      # the hundreds)
+MC_Z_JOINT = 4.5      # joint-cell tolerance: family-wise bound over the ~2187
+                      # simultaneous cell tests (3^7; at 3 SE, per-cell gates
+                      # fail by chance alone far too often once N-way cells
+                      # number in the hundreds)
 BUCKETS = ("hit", "no_edge", "miss")
 
 
@@ -363,18 +364,18 @@ def main(argv=None) -> int:
     multi = {f"all-{bk}": frechet_multi([ai[bk] for ai in a])
              for bk in ("miss", "hit")}
     doc = {
-        "schema_version": SCHEMA, "owner": "MARK", "task": "TASK-00129",
+        "schema_version": SCHEMA, "owner": "MARK", "task": "TASK-00140",
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "artifact_policy": ("ONE current simulation, regenerated in place "
                             "(atomic tmp+rename). No version chain (K2)."),
-        "revision_note": ("extended from 4 registered bets to all 6 (MU, UNH, "
-                          "ASML, TSLA, JPM, XOM) after the JPM (TASK-00115) and "
-                          "XOM (TASK-00125) registrations; the 'not yet in the "
-                          "joint simulation' limitation BOTH those artifacts "
-                          "recorded is closed by this run; the per-cell MC gate "
-                          "moved to a 4.5-SE family-wise bound because 729 "
-                          "simultaneous cell tests make a naive 3-SE per-cell "
-                          "gate fail by chance alone"),
+        "revision_note": ("extended from 6 registered bets to all 7 (MU, UNH, "
+                          "ASML, TSLA, JPM, XOM, KO) after the KO (TASK-00137) "
+                          "registration; the 'not yet in the joint simulation' "
+                          "limitation the KO artifact recorded is closed by this "
+                          "run (JPM TASK-00115 and XOM TASK-00125 gaps were "
+                          "closed earlier); the per-cell MC gate remains a 4.5-SE "
+                          "family-wise bound because 2187 simultaneous cell tests "
+                          "make a naive 3-SE per-cell gate fail by chance alone"),
         "purpose": ("quantify the joint event risk of the registered bet book "
                     "before any horizon arrives; read-only simulation, no new "
                     "market numbers, no trades, no recommendations"),
@@ -384,8 +385,8 @@ def main(argv=None) -> int:
             "each bet's event return ~ Normal(0, sigma_event) with sigma_event taken from that artifact's own conservative K8 calibration (max of the vendor implied move read as 1 sigma vs as E|move|)",
             "hit = 0.5 per bet is the null convention inherited from each artifact (P(non-positive)=50%); it is NOT an edge claim - the claimed edges live in each thesis file",
             "no fat-tail overlay: Gaussian tails understate the mass of extreme earnings moves",
-            "six bets span five distinct sessions: JPM and UNH both print pre-open on 2026-10-13 (the double-bill session each of those artifacts records as a risk), so those two marginals share a day - the independence point estimate ignores that positive same-day dependence and the Frechet bounds are the assumption-free bracket",
-            "sector spread: MU + ASML share the semiconductor/AI-capex factor; UNH is healthcare, TSLA consumer/EV, JPM financials, XOM energy (5 sectors across 6 bets) - residual cross-bet dependence is lower than a same-sector book but is still not assumed zero",
+            "seven bets span six distinct sessions (2026-10-01 MU; 2026-10-13 JPM + UNH; 2026-10-14 ASML; 2026-10-20 KO; 2026-10-22 TSLA; 2026-10-30 XOM): JPM and UNH both print pre-open on 2026-10-13 (the double-bill session both of those artifacts record as a risk), so those two marginals share a day - the independence point estimate ignores that positive same-day dependence and the Frechet bounds are the assumption-free bracket",
+            "sector spread: MU + ASML share the semiconductor/AI-capex factor; UNH is healthcare, TSLA consumer/EV, JPM financials, XOM energy, KO consumer staples (6 sectors across 7 bets; staples is the defensive leg) - residual cross-bet dependence is lower than a same-sector book but is still not assumed zero",
         ],
         "analytic": {
             "per_bet": {
@@ -406,13 +407,13 @@ def main(argv=None) -> int:
         "validation_summary": {"total": len(checks), "failed": 0,
                                "negative_controls": len(ncs), "nc_failed": 0},
         "limitations": [
-            "n=6 bets: these are reproducible consequences of six committed calibrations, not a measured distribution over a sample (K3 honesty - no hit rate is claimed until horizons score)",
+            "n=7 bets: these are reproducible consequences of seven committed calibrations, not a measured distribution over a sample (K3 honesty - no hit rate is claimed until horizons score)",
             "Gaussian event returns: real earnings returns are fat-tailed, so tail numbers like P(all miss) are likely understated; the Frechet bounds are the assumption-free fallback",
             "sigma_event inputs inherit each vendor implied-move quote's convention risk (documented in each thesis artifact)",
             "the MC leg validates arithmetic only - it carries no information beyond the analytic result (V7/V9)",
             "cross-bet correlation in reality is not zero - and JPM/UNH share the 2026-10-13 session outright; pairwise and N-way bounds bracket it, the point estimate assumes independence",
-            "the per-cell MC gate uses a 4.5-SE family-wise bound over the ~729 simultaneous cell tests (a naive 3-SE per-cell gate fails by chance alone at this cell count); margins keep 3 SE - the MC leg still validates arithmetic only, no information beyond the analytic result",
-            f"simulation is prospective: all six outcomes are unscored until their horizons ({', '.join(sorted({b['horizon_end'] for b in bets}))}) with sourced quotes",
+            "the per-cell MC gate uses a 4.5-SE family-wise bound over the ~2187 simultaneous cell tests (3^7; a naive 3-SE per-cell gate fails by chance alone at this cell count); margins keep 3 SE - the MC leg still validates arithmetic only, no information beyond the analytic result",
+            f"simulation is prospective: all seven outcomes are unscored until their horizons ({', '.join(sorted({b['horizon_end'] for b in bets}))}) with sourced quotes",
         ],
         "disclaimer": "Research/ops artifact for internal scorekeeping. Not financial advice.",
     }
