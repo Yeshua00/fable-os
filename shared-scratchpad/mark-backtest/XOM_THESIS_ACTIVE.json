@@ -1,0 +1,594 @@
+{
+  "artifact_policy": "ONE current thesis per subject, regenerated in place (atomic tmp+rename). No version chain, so the family cannot churn under K2.",
+  "bet": {
+    "band_pct": 2.3,
+    "bet_id": "XOM-Q3-2026-REACTION-20261030",
+    "horizon_end": "2026-10-30",
+    "kill_miss": "change >= +2.3%",
+    "ledger_path": "/Users/joshuahagen/.freebuff/market-research/theses.jsonl",
+    "ledger_row_id": "thesis_xom_q3_2026_reaction",
+    "no_edge_rule": "0.0% < change < +2.3% => not_confirmed",
+    "outcome_values": [
+      "hit",
+      "not_confirmed",
+      "miss",
+      "void"
+    ],
+    "reference_rule": "reference = sourced XOM close 2026-10-29 (K6: fresh, timestamped)",
+    "registration": {
+      "created": false,
+      "others_digest_after": "9ed9e5fb8d7c167a09326d43536142317b368af664bd77b5a1009a2780dae8c5",
+      "others_digest_before": "9ed9e5fb8d7c167a09326d43536142317b368af664bd77b5a1009a2780dae8c5",
+      "row_count": 19,
+      "xom_row": "XOM-Q3-2026-REACTION-20261030"
+    },
+    "rule_version": "mark-l7-v2+k8",
+    "trigger_hit": "change <= 0.0%"
+  },
+  "calibration": {
+    "band_k_sigmas": 0.7978845608028654,
+    "band_pct": 2.3,
+    "band_sources": [
+      "marketchameleon.com/Overview/XOM/Earnings/Earnings-Charts/ search snippet, observed 2026-09-24: 'predicted a +-2.3% post earnings move, compared to a -1.0% actual move ... overestimated XOM stocks earnings move 85% of [time]' (page itself premium-gated)",
+      "optionslam.com/earnings/weekly/XOM Jul 31, 2026 print row: implied move 2.32%, closing move -0.97% tagged I(nside) (observed 2026-09-24)",
+      "optionslam.com/earnings/weekly/XOM May 1, 2026 print row: implied move 2.56%, closing move -1.02% tagged I(nside) (observed 2026-09-24)"
+    ],
+    "convention": "band = vendor implied earnings move (E|move|); sigma_event = band / E|N(0,1)| so the model's expected absolute move equals the vendor quote; k = band / sigma_event = E|N(0,1)| by construction",
+    "expected_p_hit": 0.5,
+    "expected_p_miss": 0.21246874184168096,
+    "expected_p_no_edge": 0.28753125815831904,
+    "realised_annualised_sigma_pct": 25.41565996684391,
+    "realised_daily_sigma_pct": 1.6010360875916456,
+    "sigma_event_pct": 2.88262251582565,
+    "vendor_hv_pct": 23.84,
+    "vendor_iv_pct": 29.93
+  },
+  "calibration_provenance": {
+    "artifact": "none separate; this artifact is the record",
+    "owner": "xom_thesis_register.py calibration() - inline single owner (no separate volatility task was dispatched for XOM)"
+  },
+  "catalyst": {
+    "date": "2026-10-30",
+    "date_status": "VENDOR-CONSENSUS - three independent vendors agree on 2026-10-30; NO company press release found (exact-phrase IR search returned 0 results, observed 2026-09-24)",
+    "event": "ExxonMobil Q3 2026 financial results (vendor-estimated 2026-10-30, before open per vendor BO-tag history)",
+    "implied_event_move": {
+      "band_pct": 2.3,
+      "sources": [
+        "marketchameleon.com/Overview/XOM/Earnings/Earnings-Charts/ search snippet, observed 2026-09-24: 'predicted a +-2.3% post earnings move, compared to a -1.0% actual move ... overestimated XOM stocks earnings move 85% of [time]' (page itself premium-gated)",
+        "optionslam.com/earnings/weekly/XOM Jul 31, 2026 print row: implied move 2.32%, closing move -0.97% tagged I(nside) (observed 2026-09-24)",
+        "optionslam.com/earnings/weekly/XOM May 1, 2026 print row: implied move 2.56%, closing move -1.02% tagged I(nside) (observed 2026-09-24)"
+      ]
+    },
+    "momentum_into_print": {
+      "detail": "+17.9% adjusted Jul 15 -> Sep 15 (143.58 -> 169.32), then a -6.5% four-session correction to Sep 21 (158.30, including a -3.20% single day), then a two-session +1.85% bounce into the entry (161.23); the rally's news drivers (Venezuela deal talks, lawsuit dismissal, RBC refining-offset note) all printed BEFORE the quarter",
+      "source": "stockanalysis.com series rows + page news rail (Reuters/WSJ/TheFly, observed 2026-09-24)"
+    },
+    "observed_on": "2026-09-24",
+    "release_timing_evidence": {
+      "assumed": "before open on 2026-10-30: optionslam's own history tags every one of XOM's last ten prints BO (Jul 31 2026, May 1 2026, Jan 30 2026, Oct 31 2025, Aug 1 2025, May 2 2025, Jan 31 2025, Nov 1 2024, Aug 2 2024, Apr 26 2024), so the full US reaction session is 2026-10-30 itself",
+      "shift_rule": "if XOM releases at/after 16:00 ET on 2026-10-30 (a Friday) scoring shifts to the next US session (2026-11-02); if the date slips inside the Oct 26-31 vendor window, scoring moves to the session after the ACTUAL print - in both cases the row records the actual date/timestamp (K4); band and entry stay immutable",
+      "source": "optionslam.com XOM earnings-history Position column (BO tags), observed 2026-09-24"
+    },
+    "source_confirmed": [
+      "optionslam.com/earnings/weekly/XOM: 'Next Earnings Date: Estimated on Oct. 30, 2026. OS Projected Window: Oct. 26, 2026 to Oct. 31, 2026' (observed 2026-09-24)",
+      "barchart.com/stocks/quotes/XOM/volatility-charts: 'Latest Earnings: Earnings: 10/30/26' (observed 2026-09-24)",
+      "public.com/stocks/xom/earnings: 'The next Exxon Mobil (XOM) earnings call is scheduled for Oct. 30, 2026' (observed 2026-09-24)"
+    ]
+  },
+  "disclaimer": "Research/ops artifact for internal scorekeeping. Not financial advice.",
+  "entry": {
+    "after_hours": {
+      "price": 161.37,
+      "source": "stockanalysis.com header: 'After-hours: Sep 23, 2026, 7:56 PM EDT' 161.37 (+0.09%)"
+    },
+    "market_cap": {
+      "source": "optionslam.com/earnings/weekly/XOM page: 'Market Cap: 677.9B' (observed 2026-09-24)",
+      "value": "677.9B"
+    },
+    "observed_on": "2026-09-23",
+    "price": 161.23,
+    "prior_close": {
+      "observed_on": "2026-09-22",
+      "price": 158.71,
+      "sources": [
+        "stockanalysis.com XOM history row 'Sep 22, 2026': Close 158.71, Change +0.26% (158.71/158.30 - 1 = +0.26% verified)"
+      ]
+    },
+    "range_52w": {
+      "note": "52-week range NOT sourced this run - omitted rather than estimated (K4)"
+    },
+    "sources": [
+      "stockanalysis.com/stocks/xom/history/ -- 50 sessions 2026-07-15..2026-09-23, adjusted-close basis, observed 2026-09-24 -- row 'Sep 23, 2026': Close 161.23 (at close: 4:00 PM EDT)",
+      "internal consistency: 161.23 / 158.71 - 1 = +1.59% matches the table's stated Change for that row"
+    ]
+  },
+  "explicit_risks": [
+    {
+      "direction": "scoring_risk",
+      "evidence": "optionslam/barchart/public.com snippets + 0-hit exact-phrase search, all observed 2026-09-24",
+      "risk": "Date is VENDOR-ESTIMATED, not company-confirmed: the exact-phrase search for ExxonMobil's Q3 release press release returned 0 results, and the estimate sits at the END of optionslam's Oct 26-31 window - late-window slips are the norm (optionslam's own disclaimer)"
+    },
+    {
+      "direction": "upside_against_thesis",
+      "evidence": "optionslam print rows + marketchameleon snippet (page premium-gated), observed 2026-09-24",
+      "risk": "The last two prints closed DOWN inside the band (-0.97%, -1.02%) - but both were also tagged with intraday max moves outside/near the band (-3.07% tagged O on Jul 31), so a positive intraday spike fading to a positive close still scores no_edge, not hit: the bet HITS only on a non-positive close, and the -1.0% average is a mean whose per-print distribution is premium-gated (could hide positive prints)"
+    },
+    {
+      "direction": "upside_against_thesis",
+      "evidence": "stockanalysis.com XOM news rail (Reuters/WSJ/TipRanks, observed 2026-09-24)",
+      "risk": "Venezuela deal signing pre-print: Reuters/WSJ/TipRanks report Exxon 'nearing a preliminary deal' to invest in Venezuela's oil fields (6-7 days ago) - a signed deal is an unquantified same-day positive pop"
+    },
+    {
+      "direction": "upside_against_thesis",
+      "evidence": "sourced series window moves; no dated oil quote claimed this run (K4)",
+      "risk": "Crude/oil shock dominates any single-stock reaction: the series itself ran +17.9% in two months on energy headlines, and a Middle-East/supply move into Oct 30 swamps the earnings-specific signal (macro leg not in the model)"
+    },
+    {
+      "direction": "classification_risk",
+      "evidence": "barchart volatility-charts snippet + MC/optionslam gating, observed 2026-09-24",
+      "risk": "Band 2.3% is a trailing-12 AVERAGE implied move, not a live event-straddle quote (free sources gated); current event IV is richer (barchart IV 29.93% > HV 23.84%, IV Rank 64.98), so the true priced band may be wider than 2.3% - the miss-side threshold could be understated"
+    },
+    {
+      "direction": "classification_risk",
+      "evidence": "calibration block below; same model as UNH/TSLA/JPM registrations",
+      "risk": "k = 0.7979 is BY CONSTRUCTION (band defined at E|move| = 0.7979 * sigma_event), so K8 passes whenever the band source is honest - the gate discriminates only against arbitrarily narrow bands; no_edge-heavy by construction (p_no_edge 0.2875 under the Gaussian model, higher empirically for a mega-cap energy name)"
+    },
+    {
+      "direction": "scoring_risk",
+      "evidence": "structural (sector earnings cluster); no dated peer sources claimed",
+      "risk": "Week-of-window peer collision: the Oct 26-31 window hosts other large-cap energy peers' prints (peer dates NOT sourced this run - structural claim only, K4) - sympathy flows muddy attribution of XOM's own reaction"
+    },
+    {
+      "direction": "scoring_risk",
+      "evidence": "2026-10-30 is a Friday (calendar fact) + optionslam BO convention",
+      "risk": "Friday session structure: a Friday BMO print ends the trading week at the reaction - no second-day follow-through exists before the weekend, so a small positive close can persist into Monday unchanged (compression risk for the hit leg)"
+    }
+  ],
+  "filings": [
+    {
+      "accession": "0000034088-26-000093",
+      "filed": "2026-08-03",
+      "form": "10-Q",
+      "observed_on": "2026-09-24",
+      "period": "Q2 2026 (quarter ended 2026-06-30)",
+      "primary_doc": "xom-20260630.htm",
+      "source": "data.sec.gov/submissions/CIK0000034088.json, observed 2026-09-24"
+    },
+    {
+      "accession": "0001193125-26-291986",
+      "form": "8-K",
+      "highlights": [
+        "content unread this run - recorded, not guessed (K4)"
+      ],
+      "observed_on": "2026-09-24",
+      "period": "filed 2026-07-01",
+      "source": "data.sec.gov submissions, observed 2026-09-24"
+    },
+    {
+      "form": "IR results page",
+      "highlights": [
+        "investor.exxonmobil.com: 'Latest financial results. Q2 2026. Quarter Ended Jun 30, 2026. Earnings Release HTML PDF'"
+      ],
+      "observed_on": "2026-09-24",
+      "period": "latest results block",
+      "source": "investor.exxonmobil.com (search result), observed 2026-09-24"
+    },
+    {
+      "form": "EDGAR standing record",
+      "highlights": [
+        "CIK 0000034088, EXXON MOBIL CORP",
+        "gap recorded: no item 2.02 results 8-K appears in submissions with filingDate >= 2026-07-01 (only the 10-Q and the 2026-07-01 8-K) - observed fact, not inferred"
+      ],
+      "observed_on": "2026-09-24",
+      "period": "entity metadata",
+      "source": "data.sec.gov submissions, observed 2026-09-24"
+    }
+  ],
+  "generated_at": "2026-09-24T02:13:04Z",
+  "limitations": [
+    "Catalyst date is VENDOR-estimated (3 vendors, 0 company-PR hits) inside an Oct 26-31 window; a slip shifts the scoring session per the recorded shift rule - band and entry stay immutable.",
+    "Band 2.3% is a trailing-12 AVERAGE implied move (MC snippet + optionslam's last two print rows), NOT a live event-straddle quote - free sources are gated; barchart IV 29.93% > HV 23.84% (IV Rank 64.98) suggests current event IV may price wider.",
+    "k = 0.7979 is by construction (band defined at E|move|), so K8 only rejects arbitrarily narrow bands; the real guard is band-source quality (three sources recorded).",
+    "The MC '85% overestimated / +-2.3% vs -1.0%' statistics come from a search snippet (page premium-gated); the trailing-12 per-print set could not be verified row-by-row free this run.",
+    "Realised sigma is from a 50-session adjusted series; vendor HV is a single snapshot (barchart volatility-charts 23.84% vs its companion quote page 24.41% - window/timing differ).",
+    "No Q3 consensus EPS/production/free-cash-flow numbers were sourced (K4) - the edge rests on reaction-distribution history and news-flow structure, not beat/miss framing.",
+    "8-K 0001193125-26-291986 content unread; no item 2.02 results 8-K appears in EDGAR submissions since 2026-07-01 (recorded as observed fact).",
+    "52-week range not sourced this run - omitted rather than estimated (K4); market cap cited from optionslam (677.9B).",
+    "The betbook_event_sim.py INPUTS names MU/UNH/ASML/TSLA - neither the fifth (JPM) nor this sixth bet is in the joint simulation; extending it is separate work, not silently done here.",
+    "The reference close (2026-10-29) does not exist yet; scoring requires a sourced quote on or after 2026-10-30."
+  ],
+  "owner": "MARK",
+  "price_series": {
+    "basis": "adj close (stated Change is adj-to-adj across the 2026-08-17 ex-div: Aug 17 +1.50% = 161.46/159.07); raw == adj for all rows >= 2026-08-17, so the entry is the raw close",
+    "integrity": "per-row stated-change check passes (max dev <=0.01pp)",
+    "points": 50,
+    "rows": [
+      [
+        "2026-07-15",
+        143.58
+      ],
+      [
+        "2026-07-16",
+        145.01
+      ],
+      [
+        "2026-07-17",
+        146.41
+      ],
+      [
+        "2026-07-20",
+        147.41
+      ],
+      [
+        "2026-07-21",
+        150.73
+      ],
+      [
+        "2026-07-22",
+        153.46
+      ],
+      [
+        "2026-07-23",
+        155.88
+      ],
+      [
+        "2026-07-24",
+        155.93
+      ],
+      [
+        "2026-07-27",
+        153.77
+      ],
+      [
+        "2026-07-28",
+        152.06
+      ],
+      [
+        "2026-07-29",
+        155.74
+      ],
+      [
+        "2026-07-30",
+        155.96
+      ],
+      [
+        "2026-07-31",
+        154.44
+      ],
+      [
+        "2026-08-03",
+        154.06
+      ],
+      [
+        "2026-08-04",
+        152.97
+      ],
+      [
+        "2026-08-05",
+        150.65
+      ],
+      [
+        "2026-08-06",
+        153.84
+      ],
+      [
+        "2026-08-07",
+        152.06
+      ],
+      [
+        "2026-08-10",
+        158.76
+      ],
+      [
+        "2026-08-11",
+        158.77
+      ],
+      [
+        "2026-08-12",
+        158.72
+      ],
+      [
+        "2026-08-13",
+        157.59
+      ],
+      [
+        "2026-08-14",
+        159.07
+      ],
+      [
+        "2026-08-17",
+        161.46
+      ],
+      [
+        "2026-08-18",
+        165.56
+      ],
+      [
+        "2026-08-19",
+        164.77
+      ],
+      [
+        "2026-08-20",
+        166.15
+      ],
+      [
+        "2026-08-21",
+        165.11
+      ],
+      [
+        "2026-08-24",
+        164.05
+      ],
+      [
+        "2026-08-25",
+        160.64
+      ],
+      [
+        "2026-08-26",
+        158.19
+      ],
+      [
+        "2026-08-27",
+        156.44
+      ],
+      [
+        "2026-08-28",
+        156.71
+      ],
+      [
+        "2026-08-31",
+        160.95
+      ],
+      [
+        "2026-09-01",
+        164.55
+      ],
+      [
+        "2026-09-02",
+        164.15
+      ],
+      [
+        "2026-09-03",
+        162.21
+      ],
+      [
+        "2026-09-04",
+        159.47
+      ],
+      [
+        "2026-09-08",
+        160.66
+      ],
+      [
+        "2026-09-09",
+        164.23
+      ],
+      [
+        "2026-09-10",
+        165.23
+      ],
+      [
+        "2026-09-11",
+        165.99
+      ],
+      [
+        "2026-09-14",
+        165.08
+      ],
+      [
+        "2026-09-15",
+        169.32
+      ],
+      [
+        "2026-09-16",
+        163.32
+      ],
+      [
+        "2026-09-17",
+        163.27
+      ],
+      [
+        "2026-09-18",
+        163.54
+      ],
+      [
+        "2026-09-21",
+        158.3
+      ],
+      [
+        "2026-09-22",
+        158.71
+      ],
+      [
+        "2026-09-23",
+        161.23
+      ]
+    ],
+    "source": "stockanalysis.com/stocks/xom/history/ -- 50 sessions 2026-07-15..2026-09-23, adjusted-close basis, observed 2026-09-24",
+    "span": "2026-07-15..2026-09-23"
+  },
+  "price_source_policy": {
+    "not_used": "theses.jsonl check history - substantiated unusable as a price series on 2026-09-23 (BET_THRESHOLD_CALIBRATION.json data_quality_findings)",
+    "used": "stockanalysis.com/stocks/xom/history/ -- 50 sessions 2026-07-15..2026-09-23, adjusted-close basis, observed 2026-09-24"
+  },
+  "schema_version": "market-thesis-active.v1",
+  "subject_selection": {
+    "k2_note": "AMBA remains frozen; this thesis is a registered bet, not a new brief version.",
+    "why_xom": "0 prior artifacts (fresh family - AMBA K2-frozen; MU/ASML/UNH/TSLA/JPM each carry exactly one thesis and a second file would start a version chain). ENERGY: the one major sector the book does not cover (semis MU/ASML, healthcare UNH, EV TSLA, financials JPM), so the joint book gains an uncorrelated commodity leg. Vendor-consensus catalyst 37 days out with a fully sourced 50-session series."
+  },
+  "task": "TASK-00125",
+  "thesis": {
+    "claimed_edge": "(1) the reaction distribution is negative-mean and inside-band: marketchameleon's trailing-12 has actual moves averaging -1.0% against a +-2.3% priced move, with options overestimating XOM's move 85% of the time, and optionslam's two fully visible prints both closed DOWN and Inside (-0.97% vs 2.32% implied on 2026-07-31; -1.02% vs 2.56% implied on 2026-05-01); (2) the pop is already spent - the +17.9% Jul-Sep run was headline-driven (Venezuela talks, lawsuit dismissal already printed as news before the quarter), the tape has since corrected -6.5%, and the one framing note on the quarter itself (RBC) is 'refining upside to OFFSET lost Middle East earnings' - a hold-quarter setup, not a beat setup; (3) BMO-Friday mechanics give the reaction the entire final session of the week with the date at the window's end. The edge is a judgement under a 50% null - risks 1-4 (ungated date, positive-spike closes, Venezuela signing, oil shock) are the honest counter-case and are why confidence stays at 52.",
+    "falsifiable_prediction": "XOM's close on 2026-10-30 (the US session reacting to the vendor-estimated pre-open Q3 print) is not above its 2026-10-29 close.",
+    "invalidation": "an upside breach of +2.3% on the reaction session falsifies the read decisively; no re-entry in either direction without a new written thesis",
+    "null_hypothesis": "a coin flip: P(non-positive reaction) = 50%",
+    "one_line": "XOM reaches a vendor-dated Oct 30 print with its rally already spent: +17.9% on Venezuela/refinery headlines faded -6.5%, the last two prints both closed down inside the implied band, and options have overpriced XOM's earnings move in 85% of the trailing history.",
+    "subject": "XOM",
+    "what_would_confirm": "a non-positive reaction-session close (change <= 0.0% vs the prior close)",
+    "what_would_falsify": "a positive reaction-session close (change > 0.0%), decisive-falsifier at >= +2.3%"
+  },
+  "validation": [
+    {
+      "check": "series >=30 points, strictly ascending, no duplicate dates",
+      "id": "V1",
+      "observed": {
+        "ascending": true,
+        "n": 50,
+        "span": "2026-07-15..2026-09-23",
+        "unique": true
+      },
+      "pass": true
+    },
+    {
+      "check": "series last close == cited entry price",
+      "id": "V2",
+      "observed": {
+        "entry": 161.23,
+        "series": 161.23
+      },
+      "pass": true
+    },
+    {
+      "check": "K8: band >= 0.75 sigma_events",
+      "id": "V3",
+      "observed": {
+        "band": 2.3,
+        "floor": 0.75,
+        "k": 0.7979,
+        "sigma_event": 2.8826
+      },
+      "pass": true
+    },
+    {
+      "check": "K8 gate: expected no_edge <= 75%",
+      "id": "V4",
+      "observed": {
+        "expected_no_edge": 0.2875
+      },
+      "pass": true
+    },
+    {
+      "check": "hit/no_edge/miss partition sums to 1",
+      "id": "V5",
+      "observed": {
+        "sum": 1.0
+      },
+      "pass": true
+    },
+    {
+      "check": "K6: entry quote within 1 trading day of the run",
+      "id": "V6",
+      "observed": {
+        "entry_observed_on": "2026-09-23",
+        "run_on": "2026-09-24",
+        "trading_days_old": 0.69
+      },
+      "pass": true
+    },
+    {
+      "check": "K7: bet carries kill_rule, horizon_end, hit and kill thresholds",
+      "id": "V7",
+      "observed": {
+        "hit": "<= 0.0% change",
+        "horizon_end": "2026-10-30",
+        "kill": ">= +2.3%",
+        "kill_rule": "upside breach >= +2.3% on 2026-10-30",
+        "reference": "2026-10-29"
+      },
+      "pass": true
+    },
+    {
+      "check": "catalyst date has >=2 independent sources and an explicit provenance status",
+      "id": "V8",
+      "observed": {
+        "date": "2026-10-30",
+        "sources": 3,
+        "status": "VENDOR-CONSENSUS - three"
+      },
+      "pass": true
+    },
+    {
+      "check": "per-row series integrity vs vendor stated Change (adj-close basis)",
+      "id": "V9",
+      "observed": {
+        "max_dev_pp": 0.0078,
+        "rows_checked": 49,
+        "rows_over_tol": 0
+      },
+      "pass": true
+    },
+    {
+      "check": "pricing source is fresh quotes, not the corrupt ledger series",
+      "id": "V10",
+      "observed": {
+        "ledger_status": "unusable as a price series (2026-09-23 finding)",
+        "priced_from": "stockanalysis.com/stocks/xom/history/"
+      },
+      "pass": true
+    },
+    {
+      "check": "vendor date camps and release-timing shift rule are recorded",
+      "id": "V11",
+      "observed": {
+        "company_pr": "0 hits (exact-phrase search)",
+        "shift_rule": true,
+        "timing": "BO per optionslam 10-print history",
+        "vendors": [
+          "optionslam Oct 30 (window Oct 26-31)",
+          "barchart 10/30/26",
+          "public.com Oct 30"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "check": "realised-vendor HV ratio within [0.5, 2.0]",
+      "id": "V12",
+      "observed": {
+        "ratio": 1.066,
+        "realised_pct": 25.42,
+        "vendor_hv_pct": 23.84
+      },
+      "pass": true
+    },
+    {
+      "check": "K8 gate rejects a 2.0% band (k < 0.75)",
+      "id": "NC1",
+      "observed": {
+        "band_pct": 2.0,
+        "k": 0.6938
+      },
+      "pass": true
+    },
+    {
+      "check": "K6 gate rejects a quote 3 trading days old",
+      "id": "NC2",
+      "observed": {
+        "trading_days_old": 4.14
+      },
+      "pass": true
+    },
+    {
+      "check": "V8 fails if the date status is downgraded to UNCONFIRMED",
+      "id": "NC3",
+      "observed": {
+        "simulated_status": "UNCONFIRMED",
+        "v8_passes_on_simulated": false
+      },
+      "pass": true
+    },
+    {
+      "check": "calibration is deterministic across recomputation",
+      "id": "NC4",
+      "observed": {
+        "k_first": 0.797884560803,
+        "k_second": 0.797884560803
+      },
+      "pass": true
+    }
+  ],
+  "validation_summary": {
+    "failed": 0,
+    "total": 16
+  }
+}
