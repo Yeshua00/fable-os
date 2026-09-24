@@ -1,0 +1,621 @@
+{
+  "artifact_policy": "ONE current calibration per subject, regenerated in place (atomic tmp+rename). No version chain (K2).",
+  "assumptions": [
+    "event return ~ Normal(0, sigma_event) with sigma_event = max(implied as 1 sigma, implied as E|move|) from the optionslam weekly quote",
+    "hit = 0.5 is the null convention (P(non-positive) = 50%), not an edge claim",
+    "the optionslam weekly window (to Oct 16) is wider than the Oct 13 event - using it unchanged overstates sigma_event slightly, which is the conservative direction for K8",
+    "band is set AT the quoted implied move (5.64%), matching the TSLA/MU/UNH convention"
+  ],
+  "calibration": {
+    "band_k_sigmas": 0.7978845608028654,
+    "band_pct": 5.64,
+    "event_vs_daily_ratio": 0.061953204238538805,
+    "expected_p_hit": 0.5,
+    "expected_p_miss": 0.21246874184168096,
+    "expected_p_no_edge": 0.28753125815831904,
+    "k8_floor_k": 0.75,
+    "k8_max_no_edge": 0.75,
+    "note": "JPM's event sigma (~7.07%) is ~6.2x its realised daily sigma - an earnings bet must be banded against the event quote, not the daily sigma; the daily sigmas are context only",
+    "realised_daily": {
+      "annualised_pct": 18.112380775608333,
+      "mad_pct": 1.0084162716049094,
+      "stdev_pct": 1.1409727424658769
+    },
+    "realised_source": "stockanalysis.com/stocks/jpm/history -- S&P Global Market Intelligence, Close column, page 'Last checked: Sep 23, 2026' (read after the 16:00 EDT close, final prints; raw Close == Adj. Close on every row - JPM pays a quarterly dividend but the columns agree in this window as printed)",
+    "sigma_event_basis": "max(implied as 1 sigma, implied as E|move|) - the conservative leg",
+    "sigma_event_pct": 7.068691734459421,
+    "sigma_legs": {
+      "implied_move_pct": 5.64,
+      "implied_read_as_1sigma_pct": 5.64,
+      "implied_read_as_expected_abs_move_pct": 7.068691734459421,
+      "implied_source": "optionslam.com/earnings/straddle/JPM: 'Implied Move Weekly: 5.64% Expires on: Oct. 16, 2026', observed 2026-09-24 - the weekly window (to Oct 16) is the nearest-dated quote covering the 2026-10-13 print; using it unchanged is the conservative direction (window longer than the event)"
+    }
+  },
+  "data_quality": {
+    "bad_window_specimen": {
+      "rows": 23,
+      "v12_result_on_specimen": {
+        "max_dev_pp": 2.5846,
+        "max_dev_row": "2026-09-03",
+        "rows_checked": 22,
+        "rows_over_tol": [
+          {
+            "computed": 0.8251,
+            "date": "2026-08-06",
+            "dev_pp": 1.6451,
+            "stated": -0.82
+          },
+          {
+            "computed": 0.1531,
+            "date": "2026-08-07",
+            "dev_pp": 0.1869,
+            "stated": 0.34
+          },
+          {
+            "computed": 0.8673,
+            "date": "2026-08-11",
+            "dev_pp": 0.2373,
+            "stated": 0.63
+          },
+          {
+            "computed": -0.5668,
+            "date": "2026-08-12",
+            "dev_pp": 1.4368,
+            "stated": 0.87
+          },
+          {
+            "computed": -0.0744,
+            "date": "2026-08-13",
+            "dev_pp": 0.4956,
+            "stated": -0.57
+          },
+          {
+            "computed": -0.5181,
+            "date": "2026-08-14",
+            "dev_pp": 0.4481,
+            "stated": -0.07
+          },
+          {
+            "computed": 0.6344,
+            "date": "2026-08-17",
+            "dev_pp": 1.1544,
+            "stated": -0.52
+          },
+          {
+            "computed": -1.649,
+            "date": "2026-08-18",
+            "dev_pp": 2.279,
+            "stated": 0.63
+          },
+          {
+            "computed": -1.5983,
+            "date": "2026-08-19",
+            "dev_pp": 0.0517,
+            "stated": -1.65
+          },
+          {
+            "computed": 0.0085,
+            "date": "2026-08-20",
+            "dev_pp": 1.6085,
+            "stated": -1.6
+          },
+          {
+            "computed": 1.3681,
+            "date": "2026-08-21",
+            "dev_pp": 1.3581,
+            "stated": 0.01
+          },
+          {
+            "computed": 0.0842,
+            "date": "2026-08-24",
+            "dev_pp": 1.2858,
+            "stated": 1.37
+          },
+          {
+            "computed": -0.0533,
+            "date": "2026-08-25",
+            "dev_pp": 0.1333,
+            "stated": 0.08
+          },
+          {
+            "computed": -0.6396,
+            "date": "2026-08-26",
+            "dev_pp": 0.5896,
+            "stated": -0.05
+          },
+          {
+            "computed": 0.9599,
+            "date": "2026-08-27",
+            "dev_pp": 1.5999,
+            "stated": -0.64
+          },
+          {
+            "computed": -0.4474,
+            "date": "2026-08-28",
+            "dev_pp": 1.4074,
+            "stated": 0.96
+          },
+          {
+            "computed": -0.3005,
+            "date": "2026-08-31",
+            "dev_pp": 0.1495,
+            "stated": -0.45
+          },
+          {
+            "computed": 0.3578,
+            "date": "2026-09-01",
+            "dev_pp": 0.6578,
+            "stated": -0.3
+          },
+          {
+            "computed": 1.6394,
+            "date": "2026-09-02",
+            "dev_pp": 1.2794,
+            "stated": 0.36
+          },
+          {
+            "computed": -0.9446,
+            "date": "2026-09-03",
+            "dev_pp": 2.5846,
+            "stated": 1.64
+          },
+          {
+            "computed": -1.4304,
+            "date": "2026-09-04",
+            "dev_pp": 0.4904,
+            "stated": -0.94
+          }
+        ]
+      }
+    },
+    "defect_found_and_fixed": "first transcription (2026-09-24) misattributed Aug 5 - Sep 4 by one trading session (each date held the next session's close); date-ordered checks passed because dates were valid - only the date->value pairing was wrong. Caught by re-reading the source page row-by-row; corrected series re-verified against the vendor's stated Change column (V12).",
+    "v12_result": {
+      "max_dev_pp": 0.0049,
+      "max_dev_row": "2026-08-10",
+      "rows_checked": 49,
+      "rows_over_tol": []
+    }
+  },
+  "disclaimer": "Research/ops artifact for internal scorekeeping. Not financial advice.",
+  "generated_at": "2026-09-24T01:02:40Z",
+  "inputs": {
+    "entry_last_close": {
+      "observed_on": "2026-09-23",
+      "price": 337.53,
+      "source": "stockanalysis.com JPM history table row 'Sep 23, 2026': Close 337.53 = Adj. Close 337.53, Change -0.73%, page read after the close"
+    },
+    "implied_move": {
+      "cross_check": {
+        "pct": 3.4,
+        "source": "marketchameleon.com/Overview/JPM/Earnings: last print (2026-07-14 BMO) 'options predicted a +/-3.4% move vs +2.5% actual', observed 2026-09-24"
+      },
+      "history": {
+        "exceeded_implied_16q": "9/16 (56%)",
+        "history_source": "earnings-watcher.com/wiki/jpm-implied-move: 'actual earnings move exceeded the options-implied move in 9 of its last 16 reports (56%)', page updated 2026-09-02"
+      },
+      "pct": 5.64,
+      "source": "optionslam.com/earnings/straddle/JPM: 'Implied Move Weekly: 5.64% Expires on: Oct. 16, 2026', observed 2026-09-24 - the weekly window (to Oct 16) is the nearest-dated quote covering the 2026-10-13 print; using it unchanged is the conservative direction (window longer than the event)",
+      "vol_reference": {
+        "iv_pct": 24.7,
+        "ivile_pct": 57,
+        "note": "vendor HISTORICAL vol was not obtainable this run (barchart pages returned definitions only); the vendor IV is used as the V4 reference leg and the substitution is recorded here and in limitations (K4 - absence recorded, not guessed)",
+        "source": "marketchameleon.com/Overview/JPM/IV: 'JPM implied volatility (IV) is 24.7, which is in the 57% percentile rank', observed 2026-09-24"
+      }
+    },
+    "series": {
+      "points": 50,
+      "rows": [
+        [
+          "2026-07-15",
+          346.91,
+          1.17
+        ],
+        [
+          "2026-07-16",
+          343.15,
+          -1.08
+        ],
+        [
+          "2026-07-17",
+          341.1,
+          -0.6
+        ],
+        [
+          "2026-07-20",
+          338.87,
+          -0.65
+        ],
+        [
+          "2026-07-21",
+          345.23,
+          1.88
+        ],
+        [
+          "2026-07-22",
+          348.21,
+          0.86
+        ],
+        [
+          "2026-07-23",
+          349.9,
+          0.49
+        ],
+        [
+          "2026-07-24",
+          353.21,
+          0.95
+        ],
+        [
+          "2026-07-27",
+          356.2,
+          0.85
+        ],
+        [
+          "2026-07-28",
+          357.31,
+          0.31
+        ],
+        [
+          "2026-07-29",
+          344.71,
+          -3.53
+        ],
+        [
+          "2026-07-30",
+          350.85,
+          1.78
+        ],
+        [
+          "2026-07-31",
+          351.79,
+          0.27
+        ],
+        [
+          "2026-08-03",
+          352.64,
+          0.24
+        ],
+        [
+          "2026-08-04",
+          357.52,
+          1.38
+        ],
+        [
+          "2026-08-05",
+          359.24,
+          0.48
+        ],
+        [
+          "2026-08-06",
+          356.3,
+          -0.82
+        ],
+        [
+          "2026-08-07",
+          357.52,
+          0.34
+        ],
+        [
+          "2026-08-10",
+          359.79,
+          0.63
+        ],
+        [
+          "2026-08-11",
+          362.04,
+          0.63
+        ],
+        [
+          "2026-08-12",
+          365.18,
+          0.87
+        ],
+        [
+          "2026-08-13",
+          363.11,
+          -0.57
+        ],
+        [
+          "2026-08-14",
+          362.84,
+          -0.07
+        ],
+        [
+          "2026-08-17",
+          360.96,
+          -0.52
+        ],
+        [
+          "2026-08-18",
+          363.25,
+          0.63
+        ],
+        [
+          "2026-08-19",
+          357.26,
+          -1.65
+        ],
+        [
+          "2026-08-20",
+          351.55,
+          -1.6
+        ],
+        [
+          "2026-08-21",
+          351.58,
+          0.01
+        ],
+        [
+          "2026-08-24",
+          356.39,
+          1.37
+        ],
+        [
+          "2026-08-25",
+          356.69,
+          0.08
+        ],
+        [
+          "2026-08-26",
+          356.5,
+          -0.05
+        ],
+        [
+          "2026-08-27",
+          354.22,
+          -0.64
+        ],
+        [
+          "2026-08-28",
+          357.62,
+          0.96
+        ],
+        [
+          "2026-08-31",
+          356.02,
+          -0.45
+        ],
+        [
+          "2026-09-01",
+          354.95,
+          -0.3
+        ],
+        [
+          "2026-09-02",
+          356.22,
+          0.36
+        ],
+        [
+          "2026-09-03",
+          362.06,
+          1.64
+        ],
+        [
+          "2026-09-04",
+          358.64,
+          -0.94
+        ],
+        [
+          "2026-09-08",
+          353.51,
+          -1.43
+        ],
+        [
+          "2026-09-09",
+          354.71,
+          0.34
+        ],
+        [
+          "2026-09-10",
+          353.56,
+          -0.32
+        ],
+        [
+          "2026-09-11",
+          356.23,
+          0.76
+        ],
+        [
+          "2026-09-14",
+          350.13,
+          -1.71
+        ],
+        [
+          "2026-09-15",
+          352.49,
+          0.67
+        ],
+        [
+          "2026-09-16",
+          348.92,
+          -1.01
+        ],
+        [
+          "2026-09-17",
+          349.31,
+          0.11
+        ],
+        [
+          "2026-09-18",
+          349.67,
+          0.1
+        ],
+        [
+          "2026-09-21",
+          352.04,
+          0.68
+        ],
+        [
+          "2026-09-22",
+          340.0,
+          -3.42
+        ],
+        [
+          "2026-09-23",
+          337.53,
+          -0.73
+        ]
+      ],
+      "source": "stockanalysis.com/stocks/jpm/history -- S&P Global Market Intelligence, Close column, page 'Last checked: Sep 23, 2026' (read after the 16:00 EDT close, final prints; raw Close == Adj. Close on every row - JPM pays a quarterly dividend but the columns agree in this window as printed)",
+      "span": "2026-07-15..2026-09-23"
+    }
+  },
+  "limitations": [
+    "vendor HISTORICAL vol was not obtainable this run (barchart returned definitions only); V4 uses marketchameleon's IV 24.7 as the reference leg - an IV/HV substitution, recorded not hidden (K4)",
+    "the optionslam weekly quote spans to Oct 16 (3 days past the print); a tighter event-only straddle quote was not available on 2026-09-24",
+    "n=50 sessions from one window; the -3.53% (Jul 29) and -3.42% (Sep 22) days inflate stdev relative to MAD (rel_gap 0.244) but pass V3",
+    "realised vs implied: earnings-watcher shows JPM's actual move exceeded the implied 9/16 (56%) - options have NOT reliably overpriced this event; the calibration sizes the band, it does not claim an overpricing edge",
+    "prospective: the 2026-10-13 outcome does not exist yet; scoring needs sourced quotes on/after the print"
+  ],
+  "owner": "MARK",
+  "purpose": "calibrate the candidate band for the JPM Q3-2026 earnings bet BEFORE registration so K8 ('no bet on an uncalibrated band') is satisfied at registration time",
+  "schema_version": "jpm-band-calibration.v1",
+  "task": "TASK-00116",
+  "validation": [
+    {
+      "check": "series >=30 points, strictly ascending, no duplicate dates",
+      "id": "V1",
+      "observed": {
+        "ascending": true,
+        "n": 50,
+        "span": "2026-07-15..2026-09-23",
+        "unique": true
+      },
+      "pass": true
+    },
+    {
+      "check": "series last close == cited entry quote",
+      "id": "V2",
+      "observed": {
+        "entry": 337.53,
+        "series": 337.53
+      },
+      "pass": true
+    },
+    {
+      "check": "stdev and MAD sigma agree within 35% relative",
+      "id": "V3",
+      "observed": {
+        "mad_pct": 1.008,
+        "rel_gap": 0.1162,
+        "stdev_pct": 1.141
+      },
+      "pass": true
+    },
+    {
+      "check": "realised annualised vol within [0.5, 2]x the vendor vol reference (IV - HV not sourced, substitution recorded)",
+      "id": "V4",
+      "observed": {
+        "ratio": 0.733,
+        "realised_annualised_pct": 18.11,
+        "vendor_iv_pct": 24.7
+      },
+      "pass": true
+    },
+    {
+      "check": "K8 gate: band k >= 0.75 (band outside the noise floor)",
+      "id": "V5",
+      "observed": {
+        "band_pct": 5.64,
+        "k": 0.7979,
+        "sigma_event_pct": 7.069
+      },
+      "pass": true
+    },
+    {
+      "check": "K8 gate: expected no_edge <= 75%",
+      "id": "V6",
+      "observed": {
+        "ceiling": 0.75,
+        "expected_no_edge": 0.2875
+      },
+      "pass": true
+    },
+    {
+      "check": "hit/no_edge/miss partition sums to 1",
+      "id": "V7",
+      "observed": {
+        "sum": 1.0
+      },
+      "pass": true
+    },
+    {
+      "check": "K6: entry quote within 1 trading day of the run",
+      "id": "V8",
+      "observed": {
+        "entry_observed_on": "2026-09-23",
+        "run_on": "2026-09-24",
+        "trading_days_old": 0.69
+      },
+      "pass": true
+    },
+    {
+      "check": "calibration is deterministic across recomputation",
+      "id": "V9",
+      "observed": {
+        "k_first": 0.797884560803,
+        "k_second": 0.797884560803
+      },
+      "pass": true
+    },
+    {
+      "check": "pricing source is fresh quotes, not the corrupt ledger series",
+      "id": "V10",
+      "observed": {
+        "ledger_status": "unusable as a price series (2026-09-23 finding)",
+        "priced_from": "stockanalysis.com/stocks/jpm/history"
+      },
+      "pass": true
+    },
+    {
+      "check": "per-row returns agree with the vendor's stated Change column (<= 0.01pp) - catches date/value misattribution",
+      "id": "V12",
+      "observed": {
+        "max_dev_pp": 0.0049,
+        "max_dev_row": "2026-08-10",
+        "rows_checked": 49,
+        "rows_over_tol": []
+      },
+      "pass": true
+    },
+    {
+      "check": "K8 gate rejects a 3.0% band (k < 0.75)",
+      "id": "NC1",
+      "observed": {
+        "band_pct": 3.0,
+        "k": 0.4244
+      },
+      "pass": true
+    },
+    {
+      "check": "V12 catches the original misattributed Aug 5 - Sep 4 window (one-session date/value shift)",
+      "id": "NC2",
+      "observed": {
+        "example": [
+          {
+            "computed": 0.8251,
+            "date": "2026-08-06",
+            "dev_pp": 1.6451,
+            "stated": -0.82
+          }
+        ],
+        "max_dev_pp": 2.5846,
+        "rows_over_tol": 21
+      },
+      "pass": true
+    },
+    {
+      "check": "V12 catches a planted +2% single-point corruption",
+      "id": "NC3",
+      "observed": {
+        "max_dev_pp": 1.968,
+        "rows_over_tol": 2
+      },
+      "pass": true
+    }
+  ],
+  "validation_summary": {
+    "failed": 0,
+    "total": 14
+  }
+}
